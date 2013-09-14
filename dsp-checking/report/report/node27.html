@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>CBMC keywords</TITLE>
+<META NAME="description" CONTENT="CBMC keywords">
+<META NAME="keywords" CONTENT="report">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="report.css">
+
+<LINK REL="next" HREF="node28.html">
+<LINK REL="previous" HREF="node26.html">
+<LINK REL="up" HREF="node22.html">
+<LINK REL="next" HREF="node28.html">
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<A NAME="tex2html538"
+  HREF="node28.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="/usr/share/latex2html/icons/next.png"></A> 
+<A NAME="tex2html532"
+  HREF="node22.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="/usr/share/latex2html/icons/up.png"></A> 
+<A NAME="tex2html526"
+  HREF="node26.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="/usr/share/latex2html/icons/prev.png"></A> 
+<A NAME="tex2html534"
+  HREF="node3.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="/usr/share/latex2html/icons/contents.png"></A> 
+<A NAME="tex2html536"
+  HREF="node53.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="/usr/share/latex2html/icons/index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html539"
+  HREF="node28.html">Use cases of CBMC</A>
+<B> Up:</B> <A NAME="tex2html533"
+  HREF="node22.html">CBMC</A>
+<B> Previous:</B> <A NAME="tex2html527"
+  HREF="node26.html">Bit vector flattening</A>
+ &nbsp; <B>  <A NAME="tex2html535"
+  HREF="node3.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html537"
+  HREF="node53.html">Index</A></B> 
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION00540500000000000000">
+CBMC keywords</A>
+</H3>
+Apart from automatically checking properties of program, CBMC also provides set of keywords, which can be used to aide CBMC with more information about program. These keywords can be used for programs instrumentation. The program instrumentation is a procedure change or adds part code to verify some properties of the code.
+
+<P>
+
+<OL>
+<LI><SPAN CLASS="MATH"><IMG
+ WIDTH="93" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img53.png"
+ ALT="$assert(expr)$"></SPAN> or <!-- MATH
+ $\_\_CPROVER\_assert(expr)$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="198" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img54.png"
+ ALT="$\_\_CPROVER\_assert(expr)$"></SPAN> can be used to assert on any condition. It takes a Boolean expression <SPAN CLASS="MATH"><IMG
+ WIDTH="37" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img55.png"
+ ALT="$expr$"></SPAN> as argument. When CBMC encounters one of these keywords, it tries to generate a formula to check assertion failure. The generated formula is verified using SAT-solvers. If the formula is satisfied then assertion fails and CBMC generates error and produces counter-example showing possible trace of error.
+</LI>
+<LI><!-- MATH
+ $\_\_CPROVER\_assume(expr)$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="207" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img56.png"
+ ALT="$\_\_CPROVER\_assume(expr)$"></SPAN> keyword reduces the number of program traces that are considered and allows assume-guarantee reasoning. As <SPAN CLASS="MATH"><IMG
+ WIDTH="49" HEIGHT="13" ALIGN="BOTTOM" BORDER="0"
+ SRC="img57.png"
+ ALT="$assert$"></SPAN>, <!-- MATH
+ $\_\_CPROVER\_assume(expr)$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="207" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img56.png"
+ ALT="$\_\_CPROVER\_assume(expr)$"></SPAN> also takes a Boolean expression [<A
+ HREF="node54.html#clarke2006ansi">10</A>].
+</LI>
+</OL>
+
+<P>
+<BR><HR>
+<ADDRESS>
+ash
+2012-09-13
+</ADDRESS>
+</BODY>
+</HTML>

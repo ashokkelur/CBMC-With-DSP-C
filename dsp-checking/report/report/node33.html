@@ -1,0 +1,151 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Computing platforms</TITLE>
+<META NAME="description" CONTENT="Computing platforms">
+<META NAME="keywords" CONTENT="report">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="report.css">
+
+<LINK REL="next" HREF="node34.html">
+<LINK REL="previous" HREF="node32.html">
+<LINK REL="up" HREF="node32.html">
+<LINK REL="next" HREF="node34.html">
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<A NAME="tex2html625"
+  HREF="node34.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="/usr/share/latex2html/icons/next.png"></A> 
+<A NAME="tex2html619"
+  HREF="node32.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="/usr/share/latex2html/icons/up.png"></A> 
+<A NAME="tex2html613"
+  HREF="node32.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="/usr/share/latex2html/icons/prev.png"></A> 
+<A NAME="tex2html621"
+  HREF="node3.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="/usr/share/latex2html/icons/contents.png"></A> 
+<A NAME="tex2html623"
+  HREF="node53.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="/usr/share/latex2html/icons/index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html626"
+  HREF="node34.html">Multicore Memory models</A>
+<B> Up:</B> <A NAME="tex2html620"
+  HREF="node32.html">Multicore Hardware Model</A>
+<B> Previous:</B> <A NAME="tex2html614"
+  HREF="node32.html">Multicore Hardware Model</A>
+ &nbsp; <B>  <A NAME="tex2html622"
+  HREF="node3.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html624"
+  HREF="node53.html">Index</A></B> 
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00710000000000000000">
+Computing platforms</A>
+</H1>
+
+<P>
+The computing platforms are generally classified based on Flynn's taxonomy [<A
+ HREF="node54.html#flynn1966very">17</A>]. The classification is based on number of data and instruction streams. The classification is as follows: 
+
+<P>
+
+<OL>
+<LI>Single Instruction Stream-Single Data Stream (SISD)
+
+<P>
+A computing unit with single instruction stream and single data stream. For example: single core micro-controllers and micro-processors.
+
+<P>
+</LI>
+<LI>Single Instruction Stream-Multiple Data Stream (SIMD)
+
+<P>
+Multiple computing units process same instruction on different data stream. For example: Graphical Processing Units (GPU).
+
+<P>
+</LI>
+<LI>Multiple Instruction Stream-Single Data Stream (MISD)
+
+<P>
+Multiple computing units process different instruction on same data. For example fault tolerant systems run different algorithms on same data and analyse the result from both the algorithm.
+
+<P>
+</LI>
+<LI>Multiple Instruction Stream-Multiple Data Stream (MIMD).
+
+<P>
+Multiple instructions streams work on different data. For example, general purpose parallel computers.
+
+<P>
+</LI>
+</OL>
+
+<P>
+Parallel computing makes use of multiple computational units to process data at same time (in parallel) [<A
+ HREF="node54.html#hennessy2011computer">21</A>]. The architecture of parallel computers can be SIMD, MISD, MIMD or <SPAN  CLASS="textit">heterogeneous computer</SPAN>, which is a combination of this classification.
+
+<P>
+
+<DIV CLASS="navigation"><HR>
+<!--Navigation Panel-->
+<A NAME="tex2html625"
+  HREF="node34.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="/usr/share/latex2html/icons/next.png"></A> 
+<A NAME="tex2html619"
+  HREF="node32.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="/usr/share/latex2html/icons/up.png"></A> 
+<A NAME="tex2html613"
+  HREF="node32.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="/usr/share/latex2html/icons/prev.png"></A> 
+<A NAME="tex2html621"
+  HREF="node3.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="/usr/share/latex2html/icons/contents.png"></A> 
+<A NAME="tex2html623"
+  HREF="node53.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="/usr/share/latex2html/icons/index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html626"
+  HREF="node34.html">Multicore Memory models</A>
+<B> Up:</B> <A NAME="tex2html620"
+  HREF="node32.html">Multicore Hardware Model</A>
+<B> Previous:</B> <A NAME="tex2html614"
+  HREF="node32.html">Multicore Hardware Model</A>
+ &nbsp; <B>  <A NAME="tex2html622"
+  HREF="node3.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html624"
+  HREF="node53.html">Index</A></B> </DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+ash
+2012-09-13
+</ADDRESS>
+</BODY>
+</HTML>

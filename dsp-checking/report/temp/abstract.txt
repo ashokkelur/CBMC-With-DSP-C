@@ -1,0 +1,8 @@
+
+Computers have been key subsystems in various complex systems. As computers are adapted into various fields, hardware and software are increasing in size and complexity. It is evident that parallel computing is the way to solve large scale complex information technology problems.
+
+Engineers designing hardware and software are required to verify the system for correctness. As system's size and complexity increases, it is difficult to perform manual system verification. Model checking converts a hardware or software solution into temporal logic and uses solvers to assert on properties of solution. A Bounded Model Checker can verify properties of program/logic within bounded limits. CBMC \index{CBMC}is a Bounded Model Checker for ANSI-C and C++ programs.
+
+Thesis work is done considering an Ericsson's multicore platform as case study, which uses DSP-C as programming language. \index{DSP-C}DSP-C is a set of language extensions on ISO C programming language. These extensions allow programmers to describe features of Digital Signal Processor (DSP). The work includes extending CBMC to support DSP-C, identifying Bounded Model Checking (BMC) techniques to cope-up with concurrency of Ericsson's multicore Digital Signal Processor (DSP) platform and implementing new features in CBMC to detect issues with Ericsson's parallel software.
+
+

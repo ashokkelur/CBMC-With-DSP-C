@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Variable renaming</TITLE>
+<META NAME="description" CONTENT="Variable renaming">
+<META NAME="keywords" CONTENT="report">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="report.css">
+
+<LINK REL="next" HREF="node26.html">
+<LINK REL="previous" HREF="node24.html">
+<LINK REL="up" HREF="node22.html">
+<LINK REL="next" HREF="node26.html">
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<A NAME="tex2html510"
+  HREF="node26.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="/usr/share/latex2html/icons/next.png"></A> 
+<A NAME="tex2html504"
+  HREF="node22.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="/usr/share/latex2html/icons/up.png"></A> 
+<A NAME="tex2html498"
+  HREF="node24.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="/usr/share/latex2html/icons/prev.png"></A> 
+<A NAME="tex2html506"
+  HREF="node3.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="/usr/share/latex2html/icons/contents.png"></A> 
+<A NAME="tex2html508"
+  HREF="node53.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="/usr/share/latex2html/icons/index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html511"
+  HREF="node26.html">Bit vector flattening</A>
+<B> Up:</B> <A NAME="tex2html505"
+  HREF="node22.html">CBMC</A>
+<B> Previous:</B> <A NAME="tex2html499"
+  HREF="node24.html">Goto-programs</A>
+ &nbsp; <B>  <A NAME="tex2html507"
+  HREF="node3.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html509"
+  HREF="node53.html">Index</A></B> 
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION00540300000000000000">
+Variable renaming</A>
+</H3>
+Programs also have variables with multiple assignments on same control flow path and it adds complexity on the way we verify programs. To avoid the complexity variables are renamed whenever new values are assigned, it is called as Static Single Assignment (SSA<A NAME="396"></A>). This process is done on goto-programs before converting programs into propositional logic. For example, source code shown in fig:example:multiple:assignments can be represented as: 
+
+<P>
+<!-- MATH
+ $a = 10 \wedge sum = sum + a \wedge sum > MAX\_VALUE$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="357" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img44.png"
+ ALT="$ a = 10 \wedge sum = sum + a \wedge sum &gt; MAX\_VALUE$"></SPAN>
+
+<P>
+As we can see it is tricky to handle it in propositional logic since a variable is assigned a value and reused in the formula. To avoid it the CBMC converts logic as shown in fig:example:renaming:varibales.
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="fig:example:multiple:assignments"></A><A NAME="405"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 2.9:</STRONG>
+An example of Multiple assignments</CAPTION>
+<TR><TD><IMG
+ WIDTH="287" HEIGHT="20" BORDER="0"
+ SRC="img45.png"
+ ALT="\begin{figure}\centering
+\tikzstyle{module}=[draw, text centered, minimum heigh...
+......
+assert(sum &gt; MAX_VALUE)
+\end{lstlisting}};
+\end{tikzpicture}
+\end{figure}"></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="fig:example:renaming:varibales"></A><A NAME="414"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 2.10:</STRONG>
+Renaming variables</CAPTION>
+<TR><TD><IMG
+ WIDTH="297" HEIGHT="20" BORDER="0"
+ SRC="img46.png"
+ ALT="\begin{figure}\centering
+\tikzstyle{module}=[draw, text centered, minimum heigh...
+.....
+assert(sum1 &gt; MX_VALUE);
+\end{lstlisting}};
+\end{tikzpicture}
+\end{figure}"></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+<BR><HR>
+<ADDRESS>
+ash
+2012-09-13
+</ADDRESS>
+</BODY>
+</HTML>

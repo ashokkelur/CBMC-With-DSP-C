@@ -1,0 +1,209 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Introduction</TITLE>
+<META NAME="description" CONTENT="Introduction">
+<META NAME="keywords" CONTENT="report">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="report.css">
+
+<LINK REL="next" HREF="node10.html">
+<LINK REL="previous" HREF="node5.html">
+<LINK REL="up" HREF="report.html">
+<LINK REL="next" HREF="node8.html">
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<A NAME="tex2html226"
+  HREF="node8.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="/usr/share/latex2html/icons/next.png"></A> 
+<A NAME="tex2html220"
+  HREF="report.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="/usr/share/latex2html/icons/up.png"></A> 
+<A NAME="tex2html214"
+  HREF="node6.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="/usr/share/latex2html/icons/prev.png"></A> 
+<A NAME="tex2html222"
+  HREF="node3.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="/usr/share/latex2html/icons/contents.png"></A> 
+<A NAME="tex2html224"
+  HREF="node53.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="/usr/share/latex2html/icons/index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html227"
+  HREF="node8.html">Contributions</A>
+<B> Up:</B> <A NAME="tex2html221"
+  HREF="report.html">Model checking of multicore</A>
+<B> Previous:</B> <A NAME="tex2html215"
+  HREF="node6.html">Formal notations</A>
+ &nbsp; <B>  <A NAME="tex2html223"
+  HREF="node3.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html225"
+  HREF="node53.html">Index</A></B> 
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00400000000000000000">
+Introduction</A>
+</H1>
+
+<P>
+The complexity of hardware and software is increasing as the years are passing. With increase in complexity, the likelihood of errors is much greater. A major goal of software engineering is to enable developers to implement systems which operate reliably despite the complexity. One of the ways to achieve this is by using <SPAN  CLASS="textit">formal methods</SPAN> [<A
+ HREF="node54.html#clarke1996formal">12</A>]. Formal methods are mathematically based techniques, tools and languages for describing and verifying the system. These techniques can greatly increase our understanding of a system by revealing incompleteness, ambiguities and inconsistencies that may go undetected otherwise [<A
+ HREF="node54.html#hall1990seven">20</A>].
+
+<P>
+Single core processor's speed is limited by the physics of semiconductors. High performance computers are being designed using multiple cores to reach the high computation goals. In multicore systems, applications are designed to execute in parallel, and computation speed is achieved by parallel computation. The parallel computation increases complexity of software and hardware. Research industry is working on developing tools and techniques to reduce complexity and detect possible error cases. In this work we have analysed an embedded multicore Digital Signal Processor (DSP) architecture and software and developed <SPAN  CLASS="textit">model checking</SPAN> techniques. DSPs are processors with special functional blocks to handle digital signals. A digital signal is a sequence of discrete values which represent a physical signal, for example, representing a radio signal or audio signal. Digital signal processing can be enhanced by features like fixed point arithmetic, coprocessors and dedicated registers. The standard C language does not have explicit support to handle these features. Industry and researchers have defined extensions like Embedded-C and DSP-C to add these features to standard C. We have added support for DSP-C in our bounded model checking tool to process DSP-C based programs. We will present multicore, parallel processing, DSP functionality and DSP-C in later chapters.
+
+<P>
+<SPAN  CLASS="textit">Model checking</SPAN> is a formal method for verifying logical correctness. Proving logical correctness can be very effective in development process since testing lacks the coverage [<A
+ HREF="node54.html#zhu1997software">45</A>], peer review is error prone and costly. For example as we can see in fig:example:test:coverage:code, the function <!-- MATH
+ $greatest\_common\_divisor$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="184" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$greatest\_common\_divisor$"></SPAN> can iterate in while loop based on the values of x and y, which are dynamic values. There are <SPAN CLASS="MATH"><IMG
+ WIDTH="60" HEIGHT="20" ALIGN="BOTTOM" BORDER="0"
+ SRC="img9.png"
+ ALT="$2^N * 2^N$"></SPAN> possible inputs and <SPAN CLASS="MATH"><IMG
+ WIDTH="25" HEIGHT="20" ALIGN="BOTTOM" BORDER="0"
+ SRC="img10.png"
+ ALT="$2^N$"></SPAN> outputs, where N is number of bits in int data type. In large software it is impractical to cover all the inputs, outputs and behaviours of each function and module. There are alternative approaches in testing, like code coverage techniques and white-box testing, which can provide some assurance of behaviour but testing cannot prove the correctness.
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="fig:example:test:coverage:code"></A><A NAME="135"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 1.1:</STRONG>
+Function to find greatest common divisor</CAPTION>
+<TR><TD><IMG
+ WIDTH="835" HEIGHT="19" BORDER="0"
+ SRC="img11.png"
+ ALT="\begin{figure}\centering
+\tikzstyle{module}=[draw, text centered, minimum width...
+...
+\par
+return (x+y);
+}
+\end{lstlisting} };
+\par
+\end{tikzpicture}
+\end{figure}"></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+The verification techniques are being employed extensively in hardware and embedded system development. Since, hardware and embedded systems are designed, developed once and mass produced, and bugs in implementation may not be fixed once produced. Even a single bug in the system may lead to recall of all the products. Also, the embedded systems have become part of our regular life. For example, microwave oven at home to safety critical systems like power plant controller or flight controllers in aircraft. A single bug in these systems can lead to fatal disasters. The verification techniques can help us to identify possible error cases. In embedded systems, verification can identify problems like checking if array access is within the defined array bound, dangling pointers, arithmetic overflow or underflow and if it is a multicore systems, data races, deadlocks and many other properties can be verified [<A
+ HREF="node54.html#werner2010correctness">44</A>,<A
+ HREF="node54.html#post2007integrated">34</A>,<A
+ HREF="node54.html#vasudevan2008static">41</A>].
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="fig:model:checking"></A><A NAME="167"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 1.2:</STRONG>
+Model checking [<A
+ HREF="node54.html#clarke2008birth">8</A>]</CAPTION>
+<TR><TD>
+<DIV ALIGN="CENTER">
+
+</DIV>[width=]images/modelChecking.pdf</TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+Model checking <SPAN  CLASS="textit">statically analyses</SPAN> the implementation and asserts on the properties of the logic. fig:model:checking shows the block diagram of model checking. A model checker reads program or circuit logic, converts it into a formula and compares it with the specification. Model checker matches the logic and the specification, and tells the implementation is incorrect if the logic differs from specification. Model checking is used to detect undesired behaviours of the system.
+
+<P>
+Software model checking is complex since it operates based on information available statically, without running the programs and programs contain code segments controlled by dynamic conditions [<A
+ HREF="node54.html#godefroid2005software">18</A>]. Software model checking also has to cope up with loops which are bounded with run-time conditions, for instance, while loop in function <!-- MATH
+ $greatest\_common\_divisor$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="184" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$greatest\_common\_divisor$"></SPAN> (fig:example:test:coverage:code) is bounded by values of x and y. The dynamically bounded programs can be verified using <SPAN  CLASS="textit">Bounded Model Checking (BMC)</SPAN>, which considers a static bound on loops [<A
+ HREF="node54.html#biere2003bounded">3</A>].
+
+<P>
+<SPAN  CLASS="textit">CBMC</SPAN> is a Bounded Model Checking tool which can process C and C++ programs and verify different properties [<A
+ HREF="node54.html#website:cprover:cbmc">27</A>,<A
+ HREF="node54.html#clarke2006ansi">10</A>,<A
+ HREF="node54.html#Clarke04atool">11</A>]. It converts the programs into intermediate forms which are called <SPAN  CLASS="textit">goto-programs</SPAN><A NAME="153"></A>. The goto-programs are simplified C and C++ programs, represented in the form of Control Flow Graphs (CFG)<A NAME="154"></A>. In goto-programs, the variables are renamed so that each variable is assigned only once, the transformation is called <SPAN  CLASS="textit">Static Single Assignment</SPAN> (SSA)<A NAME="156"></A> [<A
+ HREF="node54.html#Clarke04atool">11</A>]. CBMC also supports pointers, arrays, structures, floating point operations and function pointers. CBMC handles loops by bounding the number of iterations each loop can be executed and unrolling each loop according to the bound. We will present CBMC with more details in later chapters.
+
+<P>
+<BR><HR>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL CLASS="ChildLinks">
+<LI><UL>
+<LI><A NAME="tex2html228"
+  HREF="node8.html">Contributions</A>
+<LI><A NAME="tex2html229"
+  HREF="node9.html">Structure of the thesis report</A>
+</UL></UL>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation"><HR>
+<!--Navigation Panel-->
+<A NAME="tex2html226"
+  HREF="node8.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="/usr/share/latex2html/icons/next.png"></A> 
+<A NAME="tex2html220"
+  HREF="report.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="/usr/share/latex2html/icons/up.png"></A> 
+<A NAME="tex2html214"
+  HREF="node6.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="/usr/share/latex2html/icons/prev.png"></A> 
+<A NAME="tex2html222"
+  HREF="node3.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="/usr/share/latex2html/icons/contents.png"></A> 
+<A NAME="tex2html224"
+  HREF="node53.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="/usr/share/latex2html/icons/index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html227"
+  HREF="node8.html">Contributions</A>
+<B> Up:</B> <A NAME="tex2html221"
+  HREF="report.html">Model checking of multicore</A>
+<B> Previous:</B> <A NAME="tex2html215"
+  HREF="node6.html">Formal notations</A>
+ &nbsp; <B>  <A NAME="tex2html223"
+  HREF="node3.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html225"
+  HREF="node53.html">Index</A></B> </DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+ash
+2012-09-13
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Binary Decision Diagrams (BDDs)</TITLE>
+<META NAME="description" CONTENT="Binary Decision Diagrams (BDDs)">
+<META NAME="keywords" CONTENT="report">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="report.css">
+
+<LINK REL="previous" HREF="node30.html">
+<LINK REL="up" HREF="node30.html">
+<LINK REL="next" HREF="node32.html">
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<A NAME="tex2html589"
+  HREF="node32.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="/usr/share/latex2html/icons/next.png"></A> 
+<A NAME="tex2html583"
+  HREF="node30.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="/usr/share/latex2html/icons/up.png"></A> 
+<A NAME="tex2html579"
+  HREF="node30.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="/usr/share/latex2html/icons/prev.png"></A> 
+<A NAME="tex2html585"
+  HREF="node3.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="/usr/share/latex2html/icons/contents.png"></A> 
+<A NAME="tex2html587"
+  HREF="node53.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="/usr/share/latex2html/icons/index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html590"
+  HREF="node32.html">Multicore Hardware Model</A>
+<B> Up:</B> <A NAME="tex2html584"
+  HREF="node30.html">Related work</A>
+<B> Previous:</B> <A NAME="tex2html580"
+  HREF="node30.html">Related work</A>
+ &nbsp; <B>  <A NAME="tex2html586"
+  HREF="node3.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html588"
+  HREF="node53.html">Index</A></B> 
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00601000000000000000">
+Binary Decision Diagrams (BDDs)</A>
+</H2>
+
+<P>
+<A NAME="490"></A><A NAME="491"></A>Graph based verification techniques like <SPAN  CLASS="textit">Binary Decision Diagrams (BDDs)</SPAN>, as described in [<A
+ HREF="node54.html#Bryant:1986:GAB:6432.6433">5</A>]. The BDDs are proven to be very effective in verifying binary logic [<A
+ HREF="node54.html#brace1991efficient">4</A>]. In this approach the model is described in-terms of a Directed Acyclic Graph (DAG) consisting of decision nodes and terminal nodes. 
+
+<P>
+Although BDDs are effective in solving verification problem, as the number of variables/nodes increase the size of BDDs increases exponentially and it is not practical to use BDDs, since verification process will be too slow and too memory consuming [<A
+ HREF="node54.html#clarke1997model">7</A>]. There have been attempts to develop techniques which can avoid the exponential growth, for instance work shown in [<A
+ HREF="node54.html#Burch90symbolicmodel">6</A>,<A
+ HREF="node54.html#Balarin:1993:IAL:647762.735495">2</A>,<A
+ HREF="node54.html#Pixley:1992:ECS:113938.149645">33</A>] and work by Bryant in [<A
+ HREF="node54.html#Bryant:1986:GAB:6432.6433">5</A>] showed that ordering variables will increase the efficiency of the algorithm. But despite all the efforts state explosion has been a major hurdle in applying BDD-based model checking to large and complex systems [<A
+ HREF="node54.html#springerlink:10.1007-3-540-44577-3-12">9</A>].
+
+<P>
+<BR><HR>
+<ADDRESS>
+ash
+2012-09-13
+</ADDRESS>
+</BODY>
+</HTML>

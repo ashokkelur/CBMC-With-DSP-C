@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>DSP-C support</TITLE>
+<META NAME="description" CONTENT="DSP-C support">
+<META NAME="keywords" CONTENT="report">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="report.css">
+
+<LINK REL="next" HREF="node43.html">
+<LINK REL="previous" HREF="node41.html">
+<LINK REL="up" HREF="node41.html">
+<LINK REL="next" HREF="node43.html">
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<A NAME="tex2html757"
+  HREF="node43.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="/usr/share/latex2html/icons/next.png"></A> 
+<A NAME="tex2html751"
+  HREF="node41.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="/usr/share/latex2html/icons/up.png"></A> 
+<A NAME="tex2html745"
+  HREF="node41.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="/usr/share/latex2html/icons/prev.png"></A> 
+<A NAME="tex2html753"
+  HREF="node3.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="/usr/share/latex2html/icons/contents.png"></A> 
+<A NAME="tex2html755"
+  HREF="node53.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="/usr/share/latex2html/icons/index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html758"
+  HREF="node43.html">Contract verification</A>
+<B> Up:</B> <A NAME="tex2html752"
+  HREF="node41.html">Implementation</A>
+<B> Previous:</B> <A NAME="tex2html746"
+  HREF="node41.html">Implementation</A>
+ &nbsp; <B>  <A NAME="tex2html754"
+  HREF="node3.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html756"
+  HREF="node53.html">Index</A></B> 
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00810000000000000000"></A> <A NAME="1004"></A>
+<BR>
+DSP-C support
+</H1>
+
+<P>
+As we can see in the sec:back:dspc, DSP-C extends ISO C with new data types and operations. Also we looked at the framework of CBMC in sec:back:cbmc. As we can see CBMC processes source code, produces goto-programs, the goto-programs are converted propositional logic and verified using SAT-solver. To begin with  we needed to add support in parser for parsing new data types, constants, operations and memory labels. Then the parsed data formats have to be stored in goto-programs in a structured way to be processed during propositional logic conversion. The propositional logic conversion module has to be updated for handling new structures in goto-programs.
+
+<P>
+We updated the new grammar to handle the new data types, constant types and memory labels.  With the working parser to parse the new type, we added logic to handle automatic type conversions between fixed arithmetic to any of the ISO supported basic data types, like int, float or character.
+
+<P>
+The CBMC has been updated recently to convert fixed types to propositional logic. It works by remembering the number of bits for fraction and number for integer. We developed a logic in which we can feed these numbers dynamically, during conversion. By this we can handle multiple types of fixed point conversions and operations. The current implementation can easily work with addition, subtraction and multiplication of fixed point type.
+
+<P>
+The modified CBMC tool can process the features of DSP-C and some of the simple test runs are been presented in Appendix A.
+
+<P>
+As we understood from sec:memory:lable memory labels provide information about storage location of each variable and pointer's pointing location. In the current implementation we store all the memory labels in goto-programs as property of the variable. In future one can use this information to verify the properties related to memory.
+
+<P>
+
+<DIV CLASS="navigation"><HR>
+<!--Navigation Panel-->
+<A NAME="tex2html757"
+  HREF="node43.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="/usr/share/latex2html/icons/next.png"></A> 
+<A NAME="tex2html751"
+  HREF="node41.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="/usr/share/latex2html/icons/up.png"></A> 
+<A NAME="tex2html745"
+  HREF="node41.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="/usr/share/latex2html/icons/prev.png"></A> 
+<A NAME="tex2html753"
+  HREF="node3.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="/usr/share/latex2html/icons/contents.png"></A> 
+<A NAME="tex2html755"
+  HREF="node53.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="/usr/share/latex2html/icons/index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html758"
+  HREF="node43.html">Contract verification</A>
+<B> Up:</B> <A NAME="tex2html752"
+  HREF="node41.html">Implementation</A>
+<B> Previous:</B> <A NAME="tex2html746"
+  HREF="node41.html">Implementation</A>
+ &nbsp; <B>  <A NAME="tex2html754"
+  HREF="node3.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html756"
+  HREF="node53.html">Index</A></B> </DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+ash
+2012-09-13
+</ADDRESS>
+</BODY>
+</HTML>

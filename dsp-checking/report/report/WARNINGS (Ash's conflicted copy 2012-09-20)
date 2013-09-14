@@ -1,0 +1,26 @@
+No implementation found for style `hyperref'
+No implementation found for style `listings'
+No implementation found for style `tikz'
+No implementation found for style `epstopdf'
+
+report.tex is newer than report.aux: Please rerun latex.
+
+Substitution of arg to newlabelxx delayed.
+
+introduction.tex is newer than introduction.aux: Please rerun latex.
+
+background.tex is newer than background.aux: Please rerun latex.
+
+hardware.tex is newer than hardware.aux: Please rerun latex.
+
+implementation.tex is newer than implementation.aux: Please rerun latex.
+
+conclusion.tex is newer than conclusion.aux: Please rerun latex.
+
+report.tex is newer than report.lof: Please rerun latex.
+
+report.tex is newer than report.lot: Please rerun latex.
+
+No number for "Ericsson'sDSPmulticoreplatformblockdiagram"
+
+report.tex is newer than report.bbl: Please rerun latex and bibtex.

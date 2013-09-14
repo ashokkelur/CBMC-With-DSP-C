@@ -1,0 +1,140 @@
+\documentclass[titlepage]{book}
+\usepackage{hyperref}
+\usepackage{makeidx}
+\usepackage{listings}
+\usepackage{verbatim}
+\usepackage{tikz}
+\usepackage{epstopdf}
+\usepackage{pdfpages}
+
+\usetikzlibrary{arrows,shapes,automata}
+
+\makeindex
+\setcounter{tocdepth}{1}
+\setcounter{secnumdepth}{-1}
+
+\hypersetup
+{
+    pdfauthor={Ashok Kelur},
+    pdfsubject={Masters Thesis},
+    pdftitle={Model Checking of multicore software using CBCM},
+    pdfkeywords={CBMC, Multicore, Verification, Embedded, Modelling, BMC, Real Time Systems, LTE}
+}
+
+\begin{document}
+\begin{titlepage}
+\author{Ashok Kelur\\\texttt{ashok.kelur.1807@student.uu.se}\\\texttt{ashoksarf@gmail.com}}
+\title{Model checking of multicore software using CBMC}
+%\maketitle
+\thispagestyle{empty}
+\end{titlepage}
+\date{}
+
+\includepdf[pages={1}]{title.pdf}
+\includepdf[pages={1}]{blank.pdf}
+
+
+
+\newif\ifericsson
+%\ericssontrue
+
+\begin{comment}
+\newpage
+\centering{And as in Arithmetique, unpractised men must, and Professors themselves may often erre, and cast up false; so also in any other subject of Reasoning, the ablest, most attentive, and most practised men, may deceive themselves, and inferre false Conclusions, Not but that Reason it selfe is alwayes Right Reason, as well as Arithmetique is a certain and infallible Art: But no one mans Reason, nor the Reason of any one number of men, makes the certaintie; no more than an account is therefore well cast up, because a great many men have unanimously approved it.}
+
+- Leviathan, Thomas Hobbes
+\newpage
+
+\section{Abstract}
+
+
+Computers have been key subsystems in various complex systems. As computers are adapted into various fields, hardware and software are increasing in size and complexity. It is evident that parallel computing is the way to solve large scale complex information technology problems.
+
+Engineers designing hardware and software are required to verify the system for correctness. As system's size and complexity increases, it is difficult to perform manual system verification. Model checking converts a hardware or software solution into temporal logic and uses solvers to assert on properties of solution. A Bounded Model Checker can verify properties of program/logic within bounded limits. CBMC \index{CBMC}is a Bounded Model Checker for ANSI-C and C++ programs.
+
+%The new developments in solvers like SAT-Solvers have reduced the processing time and memory space required for verification techniques, and together with increase in computing power and cheaper memory, the verification tools can handle large number of variables to verify large logic\cite{Een:2007:ALS:1768142.1768168, Hamadi09manysat:a}. These developments prompted researchers to implement verifiers for large hardware circuits and, large and complex software. 
+
+
+Thesis work is done considering an Ericsson's multicore platform as case study, which uses DSP-C as programming language. \index{DSP-C}DSP-C is a set of language extensions on ISO C programming language. These extensions allow programmers to describe features of Digital Signal Processor (DSP). The work includes extending CBMC to support DSP-C, identifying Bounded Model Checking (BMC) techniques to cope-up with concurrency of Ericsson's multicore Digital Signal Processor (DSP) platform and implementing new features in CBMC to detect issues with Ericsson's parallel software. 
+
+
+\end{comment}
+%We also developed techniques to verify contracts used in Ericsson's software.
+
+
+\includepdf[pages={1}]{abstract.pdf}
+\includepdf[pages={1}]{blank.pdf}
+
+\frontmatter
+
+\newpage
+\cleardoublepage
+\begin{center}
+\section{Acknowledgements}
+\end{center}
+
+This is a master thesis submitted in partial fulfillment of the requirements for degree of Masters of Science in Embedded Systems to Department of Information Technology, Uppsala University, Uppsala, Sweden.
+
+I would like to thank Dr. Philipp R\"ummer, Thomas Magnsson and Kenneth Andersson for initiating the work, supporting continuously and providing key insights.
+
+I would like to thank Prof. Parosh Abdulla for reviewing my master thesis.
+
+I express my gratitude to Prof. Daniel Kr\"oening for helping me understand and providing updates of CBMC. 
+
+Special thanks to Therese Breinordh and Mats Svensson for taking care of all the administrative formalities at Ericsson.
+
+I would like to thank Uppsala University and Ericsson for providing me all the software and hardware necessary for project.
+
+Sincere thanks to my friends and my family who gave me courage and support throughout the thesis work.
+
+%I would like to thank my parents, Vijaykumar and Vijaya, for supporting me in all of my initiatives and my siblings, Kavita and Ningappa, for love and support.
+
+%At last, I would like to thank all my friends for providing helpful suggestions whenever in need.
+
+
+
+\tableofcontents
+\listoffigures
+\listoftables
+
+\newpage
+\begin{center}
+\section{Formal notations}
+\begin{table}[h]
+\centering
+    \begin{tabular}{l  l}
+        $\wedge$ & Concatenation operation \\
+        $\vee$ & Disjunction operation \\
+        $\neg$ & Negation operation \\
+        %$\overline{A}$ & Negation of A \\
+        $\cap$ & Set intersection operation \\
+        $\cup$ & Set union operation \\
+        $X^n$ & Power (X power of n) \\
+        $\vdash$ & Infers
+
+    \end{tabular}
+\end{table}
+\end{center}
+
+
+\mainmatter
+
+\setcounter{secnumdepth}{1}
+\include{introduction}
+\include{background}
+
+\include{hardware}
+\include{implementation}
+\include{conclusion}
+
+%\addcontentsline{toc}{chapter}{Index}{References}{section}
+\printindex
+
+\phantomsection
+\addcontentsline{toc}{chapter}{Bibliography}
+\bibliographystyle{plain}
+\bibliography{bibtex}
+
+\include{appendix}
+\end{document}
+

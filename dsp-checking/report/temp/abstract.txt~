@@ -1,0 +1,3 @@
+Computers have been key subsystems in various complex systems. As computers are adapted into various elds, hardware and software are increasing in size and complexity. It is evident that parallel computing is the way to solve large scale complex information technology problems. Engineers designing hardware and software are required to verify the system for correctness. As system's size and complexity increases, it is dicult to perform manual system verication. Model checking converts a hardware or software solution into temporal logic and uses solvers to assert on properties of solution. A Bounded Model Checker can verify properties of program/logic within bounded limits. CBMC is a Bounded Model Checker for ANSI-C and C++ programs.
+:w.
+

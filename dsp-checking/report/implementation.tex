@@ -1,0 +1,185 @@
+\chapter{Implementation} \label{chap:implementation}
+
+In this chapter we will present implementation part of the thesis. First section describes about DSP-C support implemented in CBMC, second section is dedicated to contract programming, third section talks about memory overlay handling and last section presents the support for parallel programs in multicore platform.
+
+Note that, software we were working with was property of Ericsson. We cannot publish real examples, to avoid intellectual property rights violation. We are using toy programs as examples to present the concepts.
+
+\section{DSP-C support} \index{DSP-C}
+
+As we presented DSP-C in \autoref{sec:back:dspc}, DSP-C extends ISO C with new data types and operations. Also we looked at framework of CBMC in \autoref{sec:back:cbmc}. CBMC processes source code, produces goto-programs, goto-programs are converted propositional logic and verified using SAT-solver. To begin with we needed to add support in parser for parsing new data types, constants, operations and memory labels. Then parsed data formats have to be stored in goto-programs in a structured way to be processed during propositional logic conversion. The propositional logic conversion module has to be updated for handling new structures in goto-programs.
+
+We updated new grammar to handle new data types, constant types and memory labels.  With working parser to parse the new type, we added logic to handle automatic type conversions between fixed arithmetic to any of ISO supported basic data types, like int, float or character.
+
+CBMC has been updated recently to convert fixed types to propositional logic. It works by remembering total number of bits to store a fixed point and bits for fraction in it. We developed a logic in which we can feed these numbers dynamically, during conversion. With this modification, we can handle multiple types of fixed point, type conversions and operations. The current implementation can easily work with addition, subtraction and multiplication of fixed point type.
+
+The modified CBMC tool can process features of DSP-C and some of the simple test runs are been presented in Appendix A.
+
+As we understood from \autoref{sec:memory:lable} memory labels provide information about storage location of each variable and pointer's pointing location. In current implementation, we store all the memory labels in goto-programs as property of variables. In future one can use memory labels to verify the properties related to memory.
+
+
+\section{Contract verification}\index{Contracts} \label{impl:contracts}
+
+We studied the use cases and advantages of contract programming in \autoref{sec:back:contact:prog}. Our goals were to implement a mechanism to verify, if a postcondition can be proven false based on precondition and verify if the caller's contract violate the callee's contracts or callee's contracts can violate caller's contacts. For instance \autoref{fig:impl:contract:funcall} shows a generic pseudo code for function caller and callee with contracts. As we can see there can be two kinds of contract violations possible in $function\_callee$. First, postcondition of a function can fail because of its own preconditions. For example, $pre\_cond$ can be $state==X$ and $post\_cond$ can be $state==Y$, and there can be feasible path with state to be X, but does not have assignment to state variable to be Y. This will violate the postcondition based on precondition. Second, precondition of callee, $precondition(pre\_callee)$, can fail because of precondition of caller $precondition(pre\_caller)$.  For example, callee can have precondition with $state==X$ and caller with $state==X$, and a feasible path from precondition of caller to precondition of callee with assignment $state=Y$ can violate the contract of callee.
+
+\begin{figure}
+    \centering
+    \tikzstyle{module}=[draw, minimum height=4.5em, text width = 20em, rounded corners]
+    \tikzstyle{goto}=[draw, text centered, minimum height=5em, text width =8em]
+    \tikzstyle{line}=[draw, -latex]
+    \begin{tikzpicture}[node distance=4cm, auto, >=latex]
+          \node (fun1) [module] {
+                  \begin{lstlisting} 
+function_caller(params):
+      precondition(pre_caller)
+      function_callee(params)
+      postcondition(post_caller)
+                  \end{lstlisting}
+               };
+          \node (fun2) [module,  below of = fun1] {
+                  \begin{lstlisting} 
+function_callee(params):
+    precondition(pre_callee)
+    ....
+    Some operations
+    ....
+    postcondition(post\_callee);
+                   \end{lstlisting}
+               };
+          \path[line] (fun1) -- (fun2);
+    \end{tikzpicture}
+   \caption{Function calls in contract programming }
+   \label{fig:impl:contract:funcall}
+
+\end{figure}
+
+The implementation proved to be much simpler since CBMC already provides keywords like $\_\_CPROVER\_assume$ and $\_\_CPROVER\_assert$. To verify contract violation within a function, we had to replace all the callee preconditions with $\_\_\_CPROVER\_assert$ and caller initiator with $\_\_CPROVER\_assume$. It can be simply done by defining appropriate macro to replace during pre-processing stage of CBMC. When CBMC starts processing preconditions and postcondition, it assumes on initial function entry and asserts on every callee's precondition.
+
+For second type of contract verification, we replaced preconditions with $\_\_CPROVER\_assume$ and postcondition with $\_\_CPROVER\_assert$. When CBMC starts processing a function it assumes all the preconditions and starts processing statements between precondition and postcondition. If assumption together with following operations violates the postcondition, violations are caught in $\_\_CPROVER\_assert$.
+
+
+\begin{figure}[htbp]
+    \centering
+    \tikzstyle{module}=[draw, text centered, minimum height=2.5em, rounded corners]
+    \begin{tikzpicture}[node distance=3cm, auto, >=latex]
+    \node (source) [module] {
+\begin{lstlisting}
+/**
+ * @function: open_door
+ *            This function automatically opens the door.
+ * precondition (door_locked == false && door_open == false)
+ * postcondition (door_open == true)
+ * invariant(door_locked)
+ * returns result: 0 if success, -1 if failure
+ */
+int open_door(BOOL door_locked, BOOL door_open)
+{
+    precondition (door_locked == false && door_open == false)
+
+    /* Operations to automatically open the door */
+    ...
+    ...
+    
+    door_open = true;
+
+    postcondition (door_open == true)
+}
+\end{lstlisting}
+};
+    \end{tikzpicture}
+   \caption{Example of contract programming}
+   \label{fig:example:typical:contract:programming}
+\end{figure}
+
+
+In example shown in \autoref{fig:example:typical:contract:programming}, $open\_door$ function is written to automatically open the door. It has preconditions for checking if the lock is not on and door is not opened already. Postcondition checking the door is open once operations are performed. The CBMC tries to check contracts between caller and calee, it will make sure that caller satisfies the requirements before it calls the function. Also when contacts are used to verify functionality of a function, we can easily find any issues with postcondition based on preconditions. Appendix B presents an example run.
+
+\section{Platform specific libraries and macro support}
+
+In this section we will briefly summarise the platform related library support we implemented.
+
+\subsection{Memory overlays}
+In some applications part of data is never reused or written back to permanent storage. Also, when we look at embedded systems, in most cases executing instructions are always kept in read only memory and whenever necessary data is brought to instruction memory, cache or scratchpad. Memory overlay is a process in which part of memory is overwritten without worrying about previous contents of it.
+
+\begin{figure}[htbp]
+    \centering
+    \tikzstyle{module}=[draw, text centered, minimum height=2.5em, rounded corners]
+    \begin{tikzpicture}[node distance=3cm, auto, >=latex]
+    \node (source) [module] {
+\begin{lstlisting}
+int random_generator()
+{
+    ...
+}
+
+int print_number(int num)
+{
+    ...
+}
+
+int main()
+{
+   int number;
+   ...
+
+   number = random_generator();
+   print_number(number);
+   ...
+}
+\end{lstlisting}
+};
+    \end{tikzpicture}
+   \caption{An example of multiple function calls}
+   \label{fig:example:multiple:funcalls}
+\end{figure}
+
+
+In example shown in \autoref{fig:example:multiple:funcalls}, main generates a random number and prints it before going further with other processing. In case, programmer knows she or he is not going to use $random\_generator$ again, the same address can be taken by $print\_number$. Possibly one can also rewrite the program as shown in figure \autoref{fig:example:memory:overlay}.
+
+\begin{figure}[htbp]
+    \centering
+    \tikzstyle{module}=[draw, text centered, minimum height=2.5em, rounded corners]
+    \begin{tikzpicture}[node distance=3cm, auto, >=latex]
+    \node (source) [module] {
+\begin{lstlisting}
+int random_generator()
+{
+    ...
+}
+
+int print_number(int num)
+{
+    ...
+}
+
+int main()
+{
+   int number;
+   ...
+   number = overlay_and_call(memory_region_x,
+                             random_generator());
+   overlay_and_call(memory_region_x,
+                    print_number,
+                    number);
+   ...
+}
+\end{lstlisting}
+};
+    \end{tikzpicture}
+   \caption{An example of memory overlay}
+   \label{fig:example:memory:overlay}
+\end{figure}
+
+As we can see function $overlay\_and\_call$ takes a pointer to memory region, function pointer and variable number of argument to be supplied to the called function. When the function executed, instructions of function, whose pointer is supplied as parameter, are brought to specific region of the memory mentioned in the argument. This avoids any memory write backs and provides faster processing. Also this reduces the amount of memory required for applications \cite{verma2004dynamic}.
+
+We added support to handle memory overlays. For data overlay we treat each new memory overlay as new memory block allocation and old block as removal. The new instruction overlay and call to those instructions is treated as simple function call. This allows CBMC to handle memory overlays in simplest manner. In future work one can add support to verify the dangling pointers due to overlays.
+
+\subsection{Support for parallel programs}
+
+Parallel programs have several control flow paths and produce large formulas during model checking. The platform we analysed did not pose threat of state space explosion since processes are scheduled to reduce the concurrent processes accessing same data. Tasks created by a process are designed to operate on independent data block and process waits until all the task finish their job. Once all the tasks finish their operation, process collects the results. To handle this kind of parallelism we modified CBMC libraries to treat each task creation as function calls. When multiple tasks are created once, we call the task one by one and order of call does not affect result since each task works on independent data blocks.
+
+
+\subsection{Internal macros}
+
+The home grown compiler for the platform supports various internal macros. These macros are specific to compiler and platform. With these macros programmers can perform platform specific tasks. For example, Open-MP like macro can parallelise a loop over different hardware threads.
+
+

@@ -1,0 +1,254 @@
+\begin{thebibliography}{10}
+
+\bibitem{Apt:1981:TYH:357146.357150}
+K.R. Apt.
+\newblock Ten years of hoare's logic: A survey - part i.
+\newblock {\em ACM Transactions on Programming Languages and Systems (TOPLAS)},
+  3(4):431--483, 1981.
+
+\bibitem{Balarin:1993:IAL:647762.735495}
+F.~Balarin and A.~Sangiovanni-Vincentelli.
+\newblock An iterative approach to language containment.
+\newblock In {\em Computer Aided Verification}, pages 29--40. Springer, 1993.
+
+\bibitem{biere2003bounded}
+A.~Biere, A.~Cimatti, E.M. Clarke, O.~Strichman, and Y.~Zhu.
+\newblock Bounded model checking.
+\newblock {\em Advances in computers}, 58:117--148, 2003.
+
+\bibitem{brace1991efficient}
+K.S. Brace, R.L. Rudell, and R.E. Bryant.
+\newblock Efficient implementation of a bdd package.
+\newblock In {\em Proceedings of the 27th ACM/IEEE design automation
+  conference}, pages 40--45. ACM, 1991.
+
+\bibitem{Bryant:1986:GAB:6432.6433}
+R.E. Bryant.
+\newblock Graph-based algorithms for boolean function manipulation.
+\newblock {\em Computers, IEEE Transactions on}, 100(8):677--691, 1986.
+
+\bibitem{Burch90symbolicmodel}
+J.~R. Burch, E.~M. Clarke, K.~L. Mcmillan, D.~L. Dill, and L.~J. Hwang.
+\newblock Symbolic model checking: 10 20 states and beyond, 1990.
+
+\bibitem{clarke1997model}
+E.~Clarke.
+\newblock Model checking.
+\newblock In {\em Foundations of software technology and theoretical computer
+  science}, pages 54--56. Springer, 1997.
+
+\bibitem{clarke2008birth}
+E.~Clarke.
+\newblock The birth of model checking.
+\newblock {\em 25 Years of Model Checking}, pages 1--26, 2008.
+
+\bibitem{springerlink:10.1007-3-540-44577-3-12}
+E.~Clarke, O.~Grumberg, S.~Jha, Y.~Lu, and H.~Veith.
+\newblock Progress on the state explosion problem in model checking.
+\newblock In {\em Informatics}, pages 176--194. Springer, 2001.
+
+\bibitem{clarke2006ansi}
+E.~Clarke and D.~Kroening.
+\newblock Ansi-c bounded model checker user manual.
+\newblock Technical report, Technical report, School of Computer Science,
+  Carnegie Mellon University, 2006.
+
+\bibitem{Clarke04atool}
+Edmund Clarke, Daniel Kroening, and Flavio Lerda.
+\newblock A tool for checking ansi-c programs.
+\newblock In {\em In Tools and Algorithms for the Construction and Analysis of
+  Systems}, pages 168--176. Springer, 2004.
+
+\bibitem{clarke1996formal}
+E.M. Clarke and J.M. Wing.
+\newblock Formal methods: State of the art and future directions.
+\newblock {\em ACM Computing Surveys (CSUR)}, 28(4):626--643, 1996.
+
+\bibitem{Davis:1962:MPT:368273.368557}
+M.~Davis, G.~Logemann, and D.~Loveland.
+\newblock A machine program for theorem-proving.
+\newblock {\em Communications of the ACM}, 5(7):394--397, 1962.
+
+\bibitem{DeMoura:2011:SMT:1995376.1995394}
+L.~De~Moura and N.~Bj{\o}rner.
+\newblock Satisfiability modulo theories: introduction and applications.
+\newblock {\em Communications of the ACM}, 54(9):69--77, 2011.
+
+\bibitem{Donaldson:2011:AAD:2034876.2034900}
+Alastair~F. Donaldson, Daniel Kroening, and Philipp R\"{u}mmer.
+\newblock Automatic analysis of dma races using model checking and k-induction.
+\newblock {\em Form. Methods Syst. Des.}, 39(1):83--113, August 2011.
+
+\bibitem{website:dspc}
+DSP-C.
+\newblock An extension to iso c.
+\newblock \url{http://www.dsp-c.org/}, May 2012.
+
+\bibitem{flynn1966very}
+M.J. Flynn.
+\newblock Very high-speed computing systems.
+\newblock {\em Proceedings of the IEEE}, 54(12):1901--1909, 1966.
+
+\bibitem{godefroid2005software}
+P.~Godefroid.
+\newblock Software model checking: The verisoft approach.
+\newblock {\em Formal Methods in System Design}, 26(2):77--101, 2005.
+
+\bibitem{hagersten1992ddm}
+E.~Hagersten, A.~Landin, and S.~Haridi.
+\newblock Ddm-a cache-only memory architecture.
+\newblock {\em Computer}, 25(9):44--54, 1992.
+
+\bibitem{hall1990seven}
+A.~Hall.
+\newblock Seven myths of formal methods.
+\newblock {\em Software, IEEE}, 7(5):11--19, 1990.
+
+\bibitem{hennessy2011computer}
+J.L. Hennessy and D.A. Patterson.
+\newblock {\em Computer architecture: a quantitative approach}.
+\newblock Morgan Kaufmann Pub, 2011.
+
+\bibitem{Hoare04communicatingsequential}
+C.~A.~R. Hoare.
+\newblock Communicating sequential processes, 2004.
+
+\bibitem{Hoare03theverifying}
+Tony Hoare.
+\newblock The verifying compiler: A grand challenge for computing research.
+\newblock {\em Journal of the ACM}, 50:2003, 2003.
+
+\bibitem{hooker1988quantitative}
+J.N. Hooker.
+\newblock A quantitative approach to logical inference.
+\newblock {\em Decision Support Systems}, 4(1):45--69, 1988.
+
+\bibitem{Kim_usinga}
+S.~Kim, H.D. Patel, and S.A. Edwards.
+\newblock Using a model checker to determine worst-case execution time.
+\newblock Technical report, Citeseer, 2009.
+
+\bibitem{kroening2008decision}
+D.~Kroening and O.~Strichman.
+\newblock {\em Decision procedures: an algorithmic point of view}.
+\newblock Springer-Verlag New York Inc, 2008.
+
+\bibitem{website:cprover:cbmc:applications}
+Daniel Kroening.
+\newblock The cbmc applications.
+\newblock \url{http://www.cprover.org/cbmc/applications.shtml}, May 2012.
+
+\bibitem{website:cprover:cbmc}
+Daniel Kroening.
+\newblock The cbmc homepage.
+\newblock \url{http://www.cprover.org/cbmc/}, May 2012.
+
+\bibitem{3540741046}
+Daniel Kroening and Ofer Strichman.
+\newblock {\em Decision Procedures: An Algorithmic Point of View (Texts in
+  Theoretical Computer Science. An EATCS Series)}.
+\newblock Springer, 2008.
+
+\bibitem{Malik:2009:BST:1536616.1536637}
+S.~Malik and L.~Zhang.
+\newblock Boolean satisfiability from theoretical hardness to practical
+  success.
+\newblock {\em Communications of the ACM}, 52(8):76--82, 2009.
+
+\bibitem{Meyer:1992:ADC:618974.619797}
+Bertrand Meyer.
+\newblock Applying "design by contract".
+\newblock {\em Computer}, 25(10):40--51, October 1992.
+
+\bibitem{moskewicz2001chaff}
+M.W. Moskewicz, C.F. Madigan, Y.~Zhao, L.~Zhang, and S.~Malik.
+\newblock Chaff: Engineering an efficient sat solver.
+\newblock In {\em Proceedings of the 38th annual Design Automation Conference},
+  pages 530--535. ACM, 2001.
+
+\bibitem{overton2001numerical}
+M.L. Overton.
+\newblock {\em Numerical computing with IEEE floating point arithmetic}.
+\newblock Siam, 2001.
+
+\bibitem{Pixley:1992:ECS:113938.149645}
+C.~Pixley, S.W. Jeong, and G.D. Hachtel.
+\newblock Exact calculation of synchronizing sequences based on binary decision
+  diagrams.
+\newblock {\em Computer-Aided Design of Integrated Circuits and Systems, IEEE
+  Transactions on}, 13(8):1024--1034, 1994.
+
+\bibitem{post2007integrated}
+H.~Post and W.~K{\"u}chlin.
+\newblock Integrated static analysis for linux device driver verification.
+\newblock In {\em Integrated Formal Methods}, pages 518--537. Springer, 2007.
+
+\bibitem{Rabinovitz05boundedmodel}
+Ishai Rabinovitz and Orna Grumberg.
+\newblock Bounded model checking of concurrent programs.
+\newblock In {\em In Computer-Aided Verification (CAV), LNCS 3576}, pages
+  82--97. Springer, 2005.
+
+\bibitem{dspcbenifits}
+M.~Roodzant.
+\newblock Real-time dsp applications benefit from high-level language
+  compilation.
+\newblock {\em REAL TIME MAGAZINE}, page~40, 1999.
+
+\bibitem{website:dspc:specification}
+DSP-C Speification.
+\newblock An extension to iso c.
+\newblock \url{http://www.open-std.org/JTC1/SC22/WG14/www/docs/n854.pdf}, May
+  2012.
+
+\bibitem{Staats:2008:PTV:1482985.1483006}
+M.~Staats and M.~Heimdahl.
+\newblock Partial translation verification for untrusted code-generators.
+\newblock {\em Formal Methods and Software Engineering}, pages 226--237, 2008.
+
+\bibitem{tiwari1995power}
+V.~Tiwari and M.~Tien-Chien~Lee.
+\newblock Power analysis of a 32-bit embedded microcontroller.
+\newblock In {\em Design Automation Conference, 1995. Proceedings of the
+  ASP-DAC'95/CHDL'95/VLSI'95., IFIP International Conference on Hardware
+  Description Languages; IFIP International Conference on Very Large Scale
+  Integration., Asian and South Pacific}, pages 141--148. IEEE, 1995.
+
+\bibitem{VardiW86}
+Moshe~Y. Vardi and Pierre Wolper.
+\newblock An automata-theoretic approach to automatic program verification
+  (preliminary report).
+\newblock In {\em LICS}, pages 332--344, 1986.
+
+\bibitem{vasudevan2008static}
+N.~Vasudevan and S.A. Edwards.
+\newblock Static deadlock detection for the shim concurrent language.
+\newblock In {\em Formal Methods and Models for Co-Design, 2008. MEMOCODE 2008.
+  6th ACM/IEEE International Conference on}, pages 49--58. IEEE, 2008.
+
+\bibitem{verma2004dynamic}
+M.~Verma, L.~Wehmeyer, and P.~Marwedel.
+\newblock Dynamic overlay of scratchpad memory for energy minimization.
+\newblock In {\em Proceedings of the 2nd IEEE/ACM/IFIP international conference
+  on Hardware/software codesign and system synthesis}, pages 104--109. ACM,
+  2004.
+
+\bibitem{springerlink:10.1007/978-3-540-88479-8_30}
+I.~Wenzel, R.~Kirner, B.~Rieder, and P.~Puschner.
+\newblock Measurement-based timing analysis.
+\newblock {\em Leveraging Applications of Formal Methods, Verification and
+  Validation}, pages 430--444, 2009.
+
+\bibitem{werner2010correctness}
+F.~Werner and D.~Farag{\'o}.
+\newblock Correctness of sensor network applications by software bounded model
+  checking.
+\newblock {\em Formal Methods for Industrial Critical Systems}, pages 115--131,
+  2010.
+
+\bibitem{zhu1997software}
+H.~Zhu, P.A.V. Hall, and J.H.R. May.
+\newblock Software unit test coverage and adequacy.
+\newblock {\em ACM Computing Surveys (CSUR)}, 29(4):366--427, 1997.
+
+\end{thebibliography}

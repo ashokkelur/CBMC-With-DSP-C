@@ -1,0 +1,245 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Contract verification</TITLE>
+<META NAME="description" CONTENT="Contract verification">
+<META NAME="keywords" CONTENT="report">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="report.css">
+
+<LINK REL="next" HREF="node44.html">
+<LINK REL="previous" HREF="node42.html">
+<LINK REL="up" HREF="node41.html">
+<LINK REL="next" HREF="node44.html">
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<A NAME="tex2html771"
+  HREF="node44.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="/usr/share/latex2html/icons/next.png"></A> 
+<A NAME="tex2html765"
+  HREF="node41.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="/usr/share/latex2html/icons/up.png"></A> 
+<A NAME="tex2html759"
+  HREF="node42.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="/usr/share/latex2html/icons/prev.png"></A> 
+<A NAME="tex2html767"
+  HREF="node3.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="/usr/share/latex2html/icons/contents.png"></A> 
+<A NAME="tex2html769"
+  HREF="node53.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="/usr/share/latex2html/icons/index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html772"
+  HREF="node44.html">Platform specific libraries and</A>
+<B> Up:</B> <A NAME="tex2html766"
+  HREF="node41.html">Implementation</A>
+<B> Previous:</B> <A NAME="tex2html760"
+  HREF="node42.html">DSP-C support</A>
+ &nbsp; <B>  <A NAME="tex2html768"
+  HREF="node3.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html770"
+  HREF="node53.html">Index</A></B> 
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00820000000000000000"></A><A NAME="1009"></A> <A NAME="impl:contracts"></A>
+<BR>
+Contract verification
+</H1>
+
+<P>
+We studied the use cases and advantages of contract programming in sec:back:contact:prog. Our goals were to implement a mechanism to verify the post condition can be proven true based on precondition and verify if the caller's contract violate the callee's contracts or callee's contracts can violate the caller's contacts. For instance fig:impl:contract:funcall shows a generic pseudo code for function caller and callee with contracts. As we can see there can be two kinds of contract violations possible in <!-- MATH
+ $function\_callee$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="114" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img64.png"
+ ALT="$function\_callee$"></SPAN>. First, postcondition of a function can fail because of its own preconditions. For example, <SPAN CLASS="MATH"><IMG
+ WIDTH="60" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img65.png"
+ ALT="$pre_cond$"></SPAN> can be <SPAN CLASS="MATH"><IMG
+ WIDTH="87" HEIGHT="14" ALIGN="BOTTOM" BORDER="0"
+ SRC="img66.png"
+ ALT="$state==X$"></SPAN> and <SPAN CLASS="MATH"><IMG
+ WIDTH="66" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img67.png"
+ ALT="$post_cond$"></SPAN> can be <SPAN CLASS="MATH"><IMG
+ WIDTH="86" HEIGHT="14" ALIGN="BOTTOM" BORDER="0"
+ SRC="img68.png"
+ ALT="$state==Y$"></SPAN>, and there can be feasible path with state to be X, but does not have assignment to state variable to be Y. This will violate the postcondition based on precondition. Second, precondition of callee, <!-- MATH
+ $precondition(pre\_callee)$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="175" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img69.png"
+ ALT="$precondition(pre\_callee)$"></SPAN>, can fail because of precondition of caller <!-- MATH
+ $precondition(pre\_caller)$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="176" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img70.png"
+ ALT="$precondition(pre\_caller)$"></SPAN>.  For example, callee can have precondition with <SPAN CLASS="MATH"><IMG
+ WIDTH="87" HEIGHT="14" ALIGN="BOTTOM" BORDER="0"
+ SRC="img66.png"
+ ALT="$state==X$"></SPAN> and caller with <SPAN CLASS="MATH"><IMG
+ WIDTH="87" HEIGHT="14" ALIGN="BOTTOM" BORDER="0"
+ SRC="img66.png"
+ ALT="$state==X$"></SPAN>, and a feasible path from precondition of caller to precondition of callee with assignment <SPAN CLASS="MATH"><IMG
+ WIDTH="73" HEIGHT="14" ALIGN="BOTTOM" BORDER="0"
+ SRC="img71.png"
+ ALT="$state=Y$"></SPAN> can violate the contract of callee.
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="fig:impl:contract:funcall"></A><A NAME="1023"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 5.1:</STRONG>
+Function calls in contract programming </CAPTION>
+<TR><TD><IMG
+ WIDTH="166" HEIGHT="115" BORDER="0"
+ SRC="img72.png"
+ ALT="\begin{figure}\centering
+\tikzstyle{module}=[draw, minimum height=4.5em, text w...
+...listing} };
+\path[line] (fun1) - (fun2);
+\end{tikzpicture}
+\par
+\end{figure}"></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+The implementation of mechanism proved to be much simpler since CBMC already provides APIs like <!-- MATH
+ $\_\_CPROVER\_assume$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="163" HEIGHT="14" ALIGN="BOTTOM" BORDER="0"
+ SRC="img73.png"
+ ALT="$\_\_CPROVER\_assume$"></SPAN> and <!-- MATH
+ $\_\_CPROVER\_assert$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="153" HEIGHT="14" ALIGN="BOTTOM" BORDER="0"
+ SRC="img74.png"
+ ALT="$\_\_CPROVER\_assert$"></SPAN>. To verify contract violation within a function we had to replace all the callee preconditions with <!-- MATH
+ $\_\_\_CPROVER\_assert$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="159" HEIGHT="14" ALIGN="BOTTOM" BORDER="0"
+ SRC="img75.png"
+ ALT="$\_\_\_CPROVER\_assert$"></SPAN> and the caller initiator with <!-- MATH
+ $\_\_CPROVER\_assume$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="163" HEIGHT="14" ALIGN="BOTTOM" BORDER="0"
+ SRC="img73.png"
+ ALT="$\_\_CPROVER\_assume$"></SPAN>. It can be simply done by defining appropriate macro to replace during pre-processing stage of CBMC. When the CBMC starts processing the preconditions and postcondition, it assumes on initial function entry and asserts on every callee's precondition.
+
+<P>
+For second type of contract verification, we replaced preconditions with <!-- MATH
+ $\_\_CPROVER\_assume$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="163" HEIGHT="14" ALIGN="BOTTOM" BORDER="0"
+ SRC="img73.png"
+ ALT="$\_\_CPROVER\_assume$"></SPAN> and post condition with <!-- MATH
+ $\_\_CPROVER\_assert$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="153" HEIGHT="14" ALIGN="BOTTOM" BORDER="0"
+ SRC="img74.png"
+ ALT="$\_\_CPROVER\_assert$"></SPAN>. When CBMC starts processing a function it assumes all the preconditions and starts processing statements between precondition and postcondition. If assumption together with following operations violates the postcondition, violations are caught in <!-- MATH
+ $\_\_CPROVER\_assert$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="153" HEIGHT="14" ALIGN="BOTTOM" BORDER="0"
+ SRC="img74.png"
+ ALT="$\_\_CPROVER\_assert$"></SPAN>.
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="fig:example:typical:contract:programming"></A><A NAME="1033"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 5.2:</STRONG>
+Example of contract programming</CAPTION>
+<TR><TD><IMG
+ WIDTH="2323" HEIGHT="20" BORDER="0"
+ SRC="img76.png"
+ ALT="\begin{figure}\centering
+\tikzstyle{module}=[draw, text centered, minimum heigh...
+...dition (door_open == true)
+}
+\end{lstlisting}};
+\end{tikzpicture}
+\end{figure}"></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+The example shown in fig:example:typical:contract:programming, <SPAN CLASS="MATH"><IMG
+ WIDTH="74" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img77.png"
+ ALT="$open\_door$"></SPAN> function is written to automatically open the door. It has preconditions for checking if the lock is not on and door is not opened already. The post condition checking door is open once the operations are performed. The CBMC tries to check contracts between caller and calee, it will make sure that caller satisfies the requirements before it calls the function. Also when the contacts are used to verify the functionality of a function, we can easily find any issues with post condition and invariants based on preconditions. Appending B presents some example runs.
+
+<P>
+
+<DIV CLASS="navigation"><HR>
+<!--Navigation Panel-->
+<A NAME="tex2html771"
+  HREF="node44.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="/usr/share/latex2html/icons/next.png"></A> 
+<A NAME="tex2html765"
+  HREF="node41.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="/usr/share/latex2html/icons/up.png"></A> 
+<A NAME="tex2html759"
+  HREF="node42.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="/usr/share/latex2html/icons/prev.png"></A> 
+<A NAME="tex2html767"
+  HREF="node3.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="/usr/share/latex2html/icons/contents.png"></A> 
+<A NAME="tex2html769"
+  HREF="node53.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="/usr/share/latex2html/icons/index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html772"
+  HREF="node44.html">Platform specific libraries and</A>
+<B> Up:</B> <A NAME="tex2html766"
+  HREF="node41.html">Implementation</A>
+<B> Previous:</B> <A NAME="tex2html760"
+  HREF="node42.html">DSP-C support</A>
+ &nbsp; <B>  <A NAME="tex2html768"
+  HREF="node3.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html770"
+  HREF="node53.html">Index</A></B> </DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+ash
+2012-09-13
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,155 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>̣__fixed types</TITLE>
+<META NAME="description" CONTENT="̣__fixed types">
+<META NAME="keywords" CONTENT="report">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="report.css">
+
+<LINK REL="next" HREF="node15.html">
+<LINK REL="previous" HREF="node13.html">
+<LINK REL="up" HREF="node13.html">
+<LINK REL="next" HREF="node15.html">
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<A NAME="tex2html354"
+  HREF="node15.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="/usr/share/latex2html/icons/next.png"></A> 
+<A NAME="tex2html348"
+  HREF="node13.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="/usr/share/latex2html/icons/up.png"></A> 
+<A NAME="tex2html342"
+  HREF="node13.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="/usr/share/latex2html/icons/prev.png"></A> 
+<A NAME="tex2html350"
+  HREF="node3.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="/usr/share/latex2html/icons/contents.png"></A> 
+<A NAME="tex2html352"
+  HREF="node53.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="/usr/share/latex2html/icons/index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html355"
+  HREF="node15.html">̣__accum types</A>
+<B> Up:</B> <A NAME="tex2html349"
+  HREF="node13.html">Fixed point data type</A>
+<B> Previous:</B> <A NAME="tex2html343"
+  HREF="node13.html">Fixed point data type</A>
+ &nbsp; <B>  <A NAME="tex2html351"
+  HREF="node3.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html353"
+  HREF="node53.html">Index</A></B> 
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION00512100000000000000"></A><A NAME="236"></A><A NAME="237"></A>
+<BR>
+̣__fixed types
+</H3>
+Signed __fixed and unsigned __fixed types will have a mantissa value. A __fixed object represents values in the range of [-1.0, +1.0]. Number of bits used to store a __fixed is platform specific. For example, a platform specific variant of __fixed type is defined in tab:fixedtypeexample. Similarly, a platform may define short __fixed to be 16 bits.
+
+<P>
+<BR><P></P>
+<DIV ALIGN="CENTER"><A NAME="248"></A>
+<TABLE>
+<CAPTION><STRONG>Table 2.1:</STRONG>
+A platform specific definition of __fixed types</CAPTION>
+<TR><TD>
+<DIV ALIGN="CENTER">
+
+</DIV>    <TABLE CELLPADDING=3 BORDER="1">
+<TR><TH ALIGN="LEFT"><SPAN  CLASS="textbf">Type</SPAN></TH>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH=21><SPAN  CLASS="textbf">Size in bits</SPAN></TH>
+<TH ALIGN="LEFT"><SPAN  CLASS="textbf">Value range</SPAN></TH>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH=57><SPAN  CLASS="textbf">Step size (least value greater than 0)</SPAN></TH>
+</TR>
+<TR><TD ALIGN="LEFT">short __fixed</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=21>8</TD>
+<TD ALIGN="LEFT">-1.0r to 0.9921875r</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=57>0.0078125r</TD>
+</TR>
+<TR><TD ALIGN="LEFT">unsigned short __fixed</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=21>7</TD>
+<TD ALIGN="LEFT">0.0ur to 0.9921875r</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=57>0.0078215ur</TD>
+</TR>
+<TR><TD ALIGN="LEFT">__fixed</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=21>16</TD>
+<TD ALIGN="LEFT">-1.0r to 0.99996928..r</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=57>0.000030..r</TD>
+</TR>
+<TR><TD ALIGN="LEFT">unsigned __fixed</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=21>15</TD>
+<TD ALIGN="LEFT">0.0r to 0.99996928..ur</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=57>0.000030..ur</TD>
+</TR>
+</TABLE>
+
+[NOTE: Succeeding `r' and `ur' in above value ranges represents a __fixed type signed and unsigned constants, respectively.]
+<A NAME="tab:fixedtypeexample"></A></TD></TR>
+</TABLE>
+</DIV><P></P>
+<BR>
+
+<P>
+
+<DIV CLASS="navigation"><HR>
+<!--Navigation Panel-->
+<A NAME="tex2html354"
+  HREF="node15.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="/usr/share/latex2html/icons/next.png"></A> 
+<A NAME="tex2html348"
+  HREF="node13.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="/usr/share/latex2html/icons/up.png"></A> 
+<A NAME="tex2html342"
+  HREF="node13.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="/usr/share/latex2html/icons/prev.png"></A> 
+<A NAME="tex2html350"
+  HREF="node3.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="/usr/share/latex2html/icons/contents.png"></A> 
+<A NAME="tex2html352"
+  HREF="node53.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="/usr/share/latex2html/icons/index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html355"
+  HREF="node15.html">̣__accum types</A>
+<B> Up:</B> <A NAME="tex2html349"
+  HREF="node13.html">Fixed point data type</A>
+<B> Previous:</B> <A NAME="tex2html343"
+  HREF="node13.html">Fixed point data type</A>
+ &nbsp; <B>  <A NAME="tex2html351"
+  HREF="node3.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html353"
+  HREF="node53.html">Index</A></B> </DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+ash
+2012-09-13
+</ADDRESS>
+</BODY>
+</HTML>

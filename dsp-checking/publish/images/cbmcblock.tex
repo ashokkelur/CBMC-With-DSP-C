@@ -1,0 +1,42 @@
+
+\documentclass[titlepage]{book}
+\usepackage{hyperref}
+\usepackage{makeidx}
+\usepackage{listings}
+\usepackage{verbatim}
+\usepackage{tikz}
+\usepackage{epstopdf}
+\usepackage{pdfpages}
+
+
+\usetikzlibrary{arrows,shapes,automata}
+\begin{document}
+\begin{figure}[htbp]
+    \centering
+    \tikzstyle{module}=[draw, text centered, minimum height=2.5em]
+    \tikzstyle{goto}=[draw, text centered, minimum height=5em, text width =8em]
+    \tikzstyle{frontend}=[draw, text centered, minimum height=2.5em]
+    \tikzstyle{backend}=[draw, text centered, minimum height=2.5em]
+    \tikzstyle{cbmc}=[draw, text centered, minimum height=2.5em]
+    \tikzstyle{line}=[draw, -latex]
+    \begin{tikzpicture}[node distance=3cm, auto, >=latex]
+          \node (source) [module] {Source C/C++};
+          \node (parsetree) [module, right of=source] {Parse Tree};
+          \node (cfg) [goto, right of=parsetree] {Goto-programs (CFG and more)};
+
+          \node (formula) [module, right of=cfg] {Formula};
+          \node (cnf) [module, above right of=formula] {CNF};
+          \node (smt) [module, below right of=formula] {SAT Solvers};
+
+          \path[line] (source) -- (parsetree);
+          \path[line] (parsetree) -- (cfg);
+          \path[line] (cfg) -- (formula);
+          \path[line] (formula) -- (cnf);
+          \path[line] (formula) -- (smt);
+          \path[line] (cnf) -- (smt);
+          \path[line] (smt) -- (cnf);
+    \end{tikzpicture}a
+
+\end{figure}
+
+\end{document}

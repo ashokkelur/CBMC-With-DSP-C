@@ -1,0 +1,244 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Satisfiability (SAT)</TITLE>
+<META NAME="description" CONTENT="Satisfiability (SAT)">
+<META NAME="keywords" CONTENT="report">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="report.css">
+
+<LINK REL="next" HREF="node22.html">
+<LINK REL="previous" HREF="node20.html">
+<LINK REL="up" HREF="node10.html">
+<LINK REL="next" HREF="node22.html">
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<A NAME="tex2html448"
+  HREF="node22.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="/usr/share/latex2html/icons/next.png"></A> 
+<A NAME="tex2html442"
+  HREF="node10.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="/usr/share/latex2html/icons/up.png"></A> 
+<A NAME="tex2html436"
+  HREF="node20.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="/usr/share/latex2html/icons/prev.png"></A> 
+<A NAME="tex2html444"
+  HREF="node3.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="/usr/share/latex2html/icons/contents.png"></A> 
+<A NAME="tex2html446"
+  HREF="node53.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="/usr/share/latex2html/icons/index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html449"
+  HREF="node22.html">CBMC</A>
+<B> Up:</B> <A NAME="tex2html443"
+  HREF="node10.html">Background</A>
+<B> Previous:</B> <A NAME="tex2html437"
+  HREF="node20.html">Contract programming</A>
+ &nbsp; <B>  <A NAME="tex2html445"
+  HREF="node3.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html447"
+  HREF="node53.html">Index</A></B> 
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00530000000000000000"></A> <A NAME="sec:sat:solver"></A>
+<BR>
+Satisfiability (SAT)
+</H1>
+
+<P>
+<A NAME="304"></A><A NAME="305"></A> Satisfiability (SAT) has been hot research topic, since SAT has shown high potential in verifying large systems [<A
+ HREF="node54.html#moskewicz2001chaff">31</A>]. SAT solvers work using satisfiability procedures in the core for propositional logic [<A
+ HREF="node54.html#DeMoura:2011:SMT:1995376.1995394">14</A>]. Propositional logic is predicate in which formula contains Boolean variables, known as atoms, and variables are connected using logical directives like conjunction, disjunction and negation.  If <SPAN CLASS="MATH"><IMG
+ WIDTH="13" HEIGHT="13" ALIGN="BOTTOM" BORDER="0"
+ SRC="img22.png"
+ ALT="$z$"></SPAN> is Boolean variable and, <SPAN CLASS="MATH"><IMG
+ WIDTH="36" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img23.png"
+ ALT="$exp_1$"></SPAN> and <SPAN CLASS="MATH"><IMG
+ WIDTH="36" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img24.png"
+ ALT="$exp_2$"></SPAN> are expressions built from Boolean variables, then we can define following formulas.
+
+<P>
+
+<UL>
+<LI><SPAN CLASS="MATH"><IMG
+ WIDTH="13" HEIGHT="13" ALIGN="BOTTOM" BORDER="0"
+ SRC="img22.png"
+ ALT="$z$"></SPAN> is a Boolean variable and can be evaluated to 0 or 1.
+</LI>
+<LI><SPAN CLASS="MATH"><IMG
+ WIDTH="36" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img23.png"
+ ALT="$exp_1$"></SPAN> is expression containing Boolean variables.
+</LI>
+<LI><SPAN CLASS="MATH"><IMG
+ WIDTH="47" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img25.png"
+ ALT="$\neg exp_1$"></SPAN> is expression containing negation on <SPAN CLASS="MATH"><IMG
+ WIDTH="36" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img23.png"
+ ALT="$exp_1$"></SPAN>.
+</LI>
+<LI><SPAN CLASS="MATH"><IMG
+ WIDTH="36" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img23.png"
+ ALT="$exp_1$"></SPAN> <SPAN CLASS="MATH"><IMG
+ WIDTH="15" HEIGHT="13" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$\vee$"></SPAN> <SPAN CLASS="MATH"><IMG
+ WIDTH="36" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img24.png"
+ ALT="$exp_2$"></SPAN> is a disjunctive expression on two expressions.
+</LI>
+<LI><SPAN CLASS="MATH"><IMG
+ WIDTH="36" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img23.png"
+ ALT="$exp_1$"></SPAN> <SPAN CLASS="MATH"><IMG
+ WIDTH="15" HEIGHT="13" ALIGN="BOTTOM" BORDER="0"
+ SRC="img1.png"
+ ALT="$\wedge$"></SPAN> <SPAN CLASS="MATH"><IMG
+ WIDTH="36" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img24.png"
+ ALT="$exp_2$"></SPAN> is a conjunctive expression on two expressions.
+</LI>
+</UL>
+
+<P>
+<!-- MATH
+ $(\neg X \vee Y)  \wedge (Y \wedge Z))$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="151" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img26.png"
+ ALT="$(\neg X \vee Y) \wedge (Y \wedge Z))$"></SPAN> from fig:example:statemachine, is an example for formula constructed from above rules. And the formula can be evaluated to 0 or 1 based the values of all the variables. For example with <SPAN CLASS="MATH"><IMG
+ WIDTH="48" HEIGHT="14" ALIGN="BOTTOM" BORDER="0"
+ SRC="img27.png"
+ ALT="$X=1$"></SPAN>, <SPAN CLASS="MATH"><IMG
+ WIDTH="46" HEIGHT="14" ALIGN="BOTTOM" BORDER="0"
+ SRC="img28.png"
+ ALT="$Y=0$"></SPAN> and <SPAN CLASS="MATH"><IMG
+ WIDTH="46" HEIGHT="14" ALIGN="BOTTOM" BORDER="0"
+ SRC="img29.png"
+ ALT="$Z=0$"></SPAN> assignment formula is evaluated to 0, and <SPAN CLASS="MATH"><IMG
+ WIDTH="97" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img30.png"
+ ALT="$X=0, Y=1$"></SPAN> and <SPAN CLASS="MATH"><IMG
+ WIDTH="46" HEIGHT="14" ALIGN="BOTTOM" BORDER="0"
+ SRC="img31.png"
+ ALT="$Z=1$"></SPAN> assignment formula is evaluated to 1. This example illustrates, variables can be constrained through operators, for instance for formula to be 1, <SPAN CLASS="MATH"><IMG
+ WIDTH="16" HEIGHT="14" ALIGN="BOTTOM" BORDER="0"
+ SRC="img32.png"
+ ALT="$Z$"></SPAN> must be 1. <SPAN  CLASS="textit">Boolean Satisfiability</SPAN> of a formula is a process of finding an assignment which evaluates it to 1. In this example <SPAN CLASS="MATH"><IMG
+ WIDTH="47" HEIGHT="14" ALIGN="BOTTOM" BORDER="0"
+ SRC="img33.png"
+ ALT="$Y=1$"></SPAN> and <SPAN CLASS="MATH"><IMG
+ WIDTH="46" HEIGHT="14" ALIGN="BOTTOM" BORDER="0"
+ SRC="img31.png"
+ ALT="$Z=1$"></SPAN> assignment will make the formula to be evaluated to 1 and satisfy it. The formulas which cannot be satisfied with any possible assignment are called unsatisfiable. For example, <!-- MATH
+ $(\neg a \vee b) \wedge (a \vee \neg b)$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="134" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img34.png"
+ ALT="$(\neg a \vee b) \wedge (a \vee \neg b)$"></SPAN> cannot be satisfied with any assignments and hence unsatisfiable.
+
+<P>
+The SAT problem is NP-Complete [<A
+ HREF="node54.html#Malik:2009:BST:1536616.1536637">29</A>]. Most SAT solvers use restricted representation of formulas in Conjunctive Normal Formula (CNF). A formula in Conjunctive Normal Form (CNF) is a congestion of clauses. A clause is disjunction of literals. A literal is a Boolean variable, or negation of Boolean variable. For example, <!-- MATH
+ $(a \vee b \vee \neg c \vee d) \wedge (a \vee b \vee \neg d \vee e)$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="236" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img35.png"
+ ALT="$(a \vee b \vee \neg c \vee d) \wedge (a \vee b \vee \neg d \vee e)$"></SPAN>, here <!-- MATH
+ $(a \vee b \vee \neg d \vee e)$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="111" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img36.png"
+ ALT="$(a \vee b \vee \neg d \vee e)$"></SPAN> is a clause with set of variables with or without negation. The approach for finding satisfiability differs in different tools. One of the commonly used approachs is DPLL [<A
+ HREF="node54.html#Davis:1962:MPT:368273.368557">13</A>]. In DPLL, given a CNF formula, the algorithm heuristically chooses an unassigned variable and assigns it a value, 0 or 1, this step is known as branching step. Then solver tries to simplify the consequences based on deduction rule. In deduction it tries to deduce if any of clause become 0. If one of the assignments leads 0, the algorithm back tracks since it will not lead to any satisfiability. Once it assigns a combination of values to all the variables which can be 1, the formula is said to be satisfiable.
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="fig:example:statemachine"></A><A NAME="322"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 2.3:</STRONG>
+An example state-machine for verification</CAPTION>
+<TR><TD><IMG
+ WIDTH="61" HEIGHT="16" BORDER="0"
+ SRC="img37.png"
+ ALT="\begin{figure}\centering
+\begin{tikzpicture}[-&gt;, &gt;=stealth', auto, node distanc...
+...\vee Z$} (B)
+(B) edge node {$Z \wedge Y$} (C);
+\end{tikzpicture}
+\end{figure}"></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+
+<DIV CLASS="navigation"><HR>
+<!--Navigation Panel-->
+<A NAME="tex2html448"
+  HREF="node22.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="/usr/share/latex2html/icons/next.png"></A> 
+<A NAME="tex2html442"
+  HREF="node10.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="/usr/share/latex2html/icons/up.png"></A> 
+<A NAME="tex2html436"
+  HREF="node20.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="/usr/share/latex2html/icons/prev.png"></A> 
+<A NAME="tex2html444"
+  HREF="node3.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="/usr/share/latex2html/icons/contents.png"></A> 
+<A NAME="tex2html446"
+  HREF="node53.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="/usr/share/latex2html/icons/index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html449"
+  HREF="node22.html">CBMC</A>
+<B> Up:</B> <A NAME="tex2html443"
+  HREF="node10.html">Background</A>
+<B> Previous:</B> <A NAME="tex2html437"
+  HREF="node20.html">Contract programming</A>
+ &nbsp; <B>  <A NAME="tex2html445"
+  HREF="node3.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html447"
+  HREF="node53.html">Index</A></B> </DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+ash
+2012-09-13
+</ADDRESS>
+</BODY>
+</HTML>

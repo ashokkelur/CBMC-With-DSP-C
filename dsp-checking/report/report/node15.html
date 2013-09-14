@@ -1,0 +1,156 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>̣__accum types</TITLE>
+<META NAME="description" CONTENT="̣__accum types">
+<META NAME="keywords" CONTENT="report">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="report.css">
+
+<LINK REL="next" HREF="node16.html">
+<LINK REL="previous" HREF="node14.html">
+<LINK REL="up" HREF="node13.html">
+<LINK REL="next" HREF="node16.html">
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<A NAME="tex2html368"
+  HREF="node16.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="/usr/share/latex2html/icons/next.png"></A> 
+<A NAME="tex2html362"
+  HREF="node13.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="/usr/share/latex2html/icons/up.png"></A> 
+<A NAME="tex2html356"
+  HREF="node14.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="/usr/share/latex2html/icons/prev.png"></A> 
+<A NAME="tex2html364"
+  HREF="node3.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="/usr/share/latex2html/icons/contents.png"></A> 
+<A NAME="tex2html366"
+  HREF="node53.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="/usr/share/latex2html/icons/index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html369"
+  HREF="node16.html">Operations on new data</A>
+<B> Up:</B> <A NAME="tex2html363"
+  HREF="node13.html">Fixed point data type</A>
+<B> Previous:</B> <A NAME="tex2html357"
+  HREF="node14.html">̣__fixed types</A>
+ &nbsp; <B>  <A NAME="tex2html365"
+  HREF="node3.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html367"
+  HREF="node53.html">Index</A></B> 
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION00512200000000000000"></A><A NAME="252"></A>
+<BR>
+̣__accum types
+</H3>
+The __accum type is similar to __fixed type with extra 8bits bits to store value before decimal point. For example __accum can store 3.142, but __fixed can only store values between [-1, +1], like 0.142. The DSP-C specification [<A
+ HREF="node54.html#website:dspc:specification">37</A>] defines that ``__accum type shall have the same scaling factors as the corresponding __fixed types, with an extension of 8 bits, an __accum value can represent value between [-256.0 to +256.0]". For example, a platform specific variant of __accum type is defined in tab:accumtypeexample.
+
+<P>
+<BR><P></P>
+<DIV ALIGN="CENTER"><A NAME="264"></A>
+<TABLE>
+<CAPTION><STRONG>Table 2.2:</STRONG>
+A platform specific definition of __accum types</CAPTION>
+<TR><TD>
+<DIV ALIGN="CENTER">
+
+</DIV>    <TABLE CELLPADDING=3 BORDER="1">
+<TR><TH ALIGN="LEFT"><SPAN  CLASS="textbf">Type</SPAN></TH>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH=21><SPAN  CLASS="textbf">Size in bits</SPAN></TH>
+<TH ALIGN="LEFT"><SPAN  CLASS="textbf">Value range</SPAN></TH>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH=57><SPAN  CLASS="textbf">Step size (least value greater than 0)</SPAN></TH>
+</TR>
+<TR><TD ALIGN="LEFT">short __accum</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=21>16</TD>
+<TD ALIGN="LEFT">-256.0a to 255.9921875a</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=57>0.0078125a</TD>
+</TR>
+<TR><TD ALIGN="LEFT">unsigned short __fixed</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=21>15</TD>
+<TD ALIGN="LEFT">0.0ua to 511.9921875ua</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=57>0.0078215ua</TD>
+</TR>
+<TR><TD ALIGN="LEFT">__fixed</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=21>24</TD>
+<TD ALIGN="LEFT">-256.0a to 255.99996928..a</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=57>0.000030..a</TD>
+</TR>
+<TR><TD ALIGN="LEFT">unsigned __fixed</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=21>23</TD>
+<TD ALIGN="LEFT">0.0r to 511.99996928..ua</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=57>0.000030..ua</TD>
+</TR>
+</TABLE>
+
+[NOTE: Succeeding `a' and `ua' in above value ranges represents a __accum type signed and unsigned constants, respectively.]
+<A NAME="tab:accumtypeexample"></A></TD></TR>
+</TABLE>
+</DIV><P></P>
+<BR>
+
+<P>
+
+<DIV CLASS="navigation"><HR>
+<!--Navigation Panel-->
+<A NAME="tex2html368"
+  HREF="node16.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="/usr/share/latex2html/icons/next.png"></A> 
+<A NAME="tex2html362"
+  HREF="node13.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="/usr/share/latex2html/icons/up.png"></A> 
+<A NAME="tex2html356"
+  HREF="node14.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="/usr/share/latex2html/icons/prev.png"></A> 
+<A NAME="tex2html364"
+  HREF="node3.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="/usr/share/latex2html/icons/contents.png"></A> 
+<A NAME="tex2html366"
+  HREF="node53.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="/usr/share/latex2html/icons/index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html369"
+  HREF="node16.html">Operations on new data</A>
+<B> Up:</B> <A NAME="tex2html363"
+  HREF="node13.html">Fixed point data type</A>
+<B> Previous:</B> <A NAME="tex2html357"
+  HREF="node14.html">̣__fixed types</A>
+ &nbsp; <B>  <A NAME="tex2html365"
+  HREF="node3.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html367"
+  HREF="node53.html">Index</A></B> </DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+ash
+2012-09-13
+</ADDRESS>
+</BODY>
+</HTML>

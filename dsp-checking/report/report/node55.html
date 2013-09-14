@@ -1,0 +1,152 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Examples of new data type and verification results</TITLE>
+<META NAME="description" CONTENT="Examples of new data type and verification results">
+<META NAME="keywords" CONTENT="report">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="report.css">
+
+<LINK REL="next" HREF="node56.html">
+<LINK REL="previous" HREF="node54.html">
+<LINK REL="up" HREF="report.html">
+<LINK REL="next" HREF="node56.html">
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<A NAME="tex2html937"
+  HREF="node56.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="/usr/share/latex2html/icons/next.png"></A> 
+<A NAME="tex2html931"
+  HREF="report.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="/usr/share/latex2html/icons/up.png"></A> 
+<A NAME="tex2html925"
+  HREF="node54.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="/usr/share/latex2html/icons/prev.png"></A> 
+<A NAME="tex2html933"
+  HREF="node3.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="/usr/share/latex2html/icons/contents.png"></A> 
+<A NAME="tex2html935"
+  HREF="node53.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="/usr/share/latex2html/icons/index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html938"
+  HREF="node56.html">Contract verification example runs</A>
+<B> Up:</B> <A NAME="tex2html932"
+  HREF="report.html">Model checking of multicore</A>
+<B> Previous:</B> <A NAME="tex2html926"
+  HREF="node54.html">Bibliography</A>
+ &nbsp; <B>  <A NAME="tex2html934"
+  HREF="node3.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html936"
+  HREF="node53.html">Index</A></B> 
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION001300000000000000000"></A> <A NAME="appendix:a"></A>
+<BR>
+Examples of new data type and verification results
+</H1>
+
+<P>
+Below program presents a example of __fixed type.
+
+<P>
+<BR>
+<IMG
+ WIDTH="262" HEIGHT="130" ALIGN="BOTTOM" BORDER="0"
+ SRC="img83.png"
+ ALT="\begin{lstlisting}
+int main() {
+short __fixed a = 0.001r;
+__fixed b = 0.01r;
+\par
+if(a + b &gt; 0.01r)
+assert(0);
+}
+\end{lstlisting}">
+<BR>
+
+<P>
+As we can see from above program assertion will be true, same has been detected using CBCM on static analysis and given a trace of it.
+
+<P>
+<BR>
+<IMG
+ WIDTH="676" HEIGHT="1181" ALIGN="BOTTOM" BORDER="0"
+ SRC="img84.png"
+ ALT="\begin{lstlisting}
+file ./fixed_type.c: Parsing
+Converting
+Type-checking fixed_t...
+...
+file ./fixed_type.c line 7 function main
+assertion
+(_Bool)0
+\end{lstlisting}">
+<BR>
+
+<P>
+Below program presents a example of __accum type.
+
+<P>
+<BR>
+<IMG
+ WIDTH="262" HEIGHT="130" ALIGN="BOTTOM" BORDER="0"
+ SRC="img85.png"
+ ALT="\begin{lstlisting}
+int main() {
+short __accum a = 0.001a;
+__accum b = 1.01a;
+\par
+if(a + b &gt; 1.01a)
+assert(0);
+}
+\end{lstlisting}">
+<BR>
+
+<P>
+As we can see from above program assertion will be true, same has been detected using CBCM on static analysis and given a trace of it.
+
+<P>
+<BR>
+<IMG
+ WIDTH="752" HEIGHT="1238" ALIGN="BOTTOM" BORDER="0"
+ SRC="img86.png"
+ ALT="\begin{lstlisting}
+file ./fixed_type.c: Parsing
+Converting
+Type-checking fixed_t...
+...
+VERIFICATION FAILED
+Error[10]: while processing ./fixed_type.c
+\end{lstlisting}">
+<BR>
+
+<P>
+<BR><HR>
+<ADDRESS>
+ash
+2012-09-13
+</ADDRESS>
+</BODY>
+</HTML>

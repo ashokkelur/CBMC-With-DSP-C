@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Circular buffers</TITLE>
+<META NAME="description" CONTENT="Circular buffers">
+<META NAME="keywords" CONTENT="report">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="report.css">
+
+<LINK REL="previous" HREF="node18.html">
+<LINK REL="up" HREF="node11.html">
+<LINK REL="next" HREF="node20.html">
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<A NAME="tex2html420"
+  HREF="node20.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="/usr/share/latex2html/icons/next.png"></A> 
+<A NAME="tex2html414"
+  HREF="node11.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="/usr/share/latex2html/icons/up.png"></A> 
+<A NAME="tex2html410"
+  HREF="node18.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="/usr/share/latex2html/icons/prev.png"></A> 
+<A NAME="tex2html416"
+  HREF="node3.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="/usr/share/latex2html/icons/contents.png"></A> 
+<A NAME="tex2html418"
+  HREF="node53.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="/usr/share/latex2html/icons/index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html421"
+  HREF="node20.html">Contract programming</A>
+<B> Up:</B> <A NAME="tex2html415"
+  HREF="node11.html">DSP-C</A>
+<B> Previous:</B> <A NAME="tex2html411"
+  HREF="node18.html">Dedicated register sets</A>
+ &nbsp; <B>  <A NAME="tex2html417"
+  HREF="node3.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html419"
+  HREF="node53.html">Index</A></B> 
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00515000000000000000"></A><A NAME="277"></A>
+<BR>
+Circular buffers
+</H2>
+DSP-C allows arrays to be defined and used as circular buffers. DSP-C defines new data type (__circ) to  make a simple array into a circular buffer. For example in fig:example:circular:buffer, ``arr[1] = 1;" will copy 1 in array index 1 and ``arr[12] = 2;" will copy  2 in index 2.
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="fig:example:circular:buffer"></A><A NAME="285"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 2.1:</STRONG>
+An example of circular buffer</CAPTION>
+<TR><TD><IMG
+ WIDTH="209" HEIGHT="20" BORDER="0"
+ SRC="img17.png"
+ ALT="\begin{figure}\centering
+\tikzstyle{module}=[draw, text centered, minimum heigh...
+...0];
+arr[1] = 1;
+arr[12] = 2;
+\end{lstlisting}};
+\end{tikzpicture}
+\end{figure}"></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+<BR><HR>
+<ADDRESS>
+ash
+2012-09-13
+</ADDRESS>
+</BODY>
+</HTML>

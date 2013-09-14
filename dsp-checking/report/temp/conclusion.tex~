@@ -1,0 +1,89 @@
+
+\chapter{Discussion and Conclusion} \label{chapter:discussion}
+
+
+During this thesis work we extend CBMC to handle features of DSP-C, provided a model to verify contract programming and based on hardware model of Ericsson multicore DSP processor, proposed solutions to detect issues in parallel code.
+
+In following sections we briefly discuss results of model checking performed on Ericsson's software. To begin with we used extended CBMC to check logical correctness of the code. In second step we performed contract verification. At last with collective knowledge of Ericsson's platform architecture and model checking on software, we proposed techniques to verify some more properties of the software.
+
+\subsection{Model checking}
+The test setup started with understanding Ericsson's build system, which is capable of handling large code base being maintained by large number of developers distributed across globe. The build system is complex to cater its requirements. The code base includes millions of lines of code and hundreds of developers working on it. For simplicity we started with small libraries which had little library dependency. Even with these libraries we did have to port most of the Ericsson specific Real Time OS APIs. Also we should note that these libraries were already tested and deployed in products.
+
+With the modified CBMC, API stubbing/porting and understanding of build system, we were able process libraries of Ericsson. During the test run we observed a lot of false positives on assertions since these assertions were written to handle run time errors. This we mainly attribute to the fact that existing code is not written to provide information to static analysers. As we understood in chapter \autoref{chap:background} and \autoref{chap:implementation}, static analysers work by looking at information available in the existing logic without knowing run time information. To make the best of any static analyser one has to provide run time information statically. This information can be provided as part of header in each module or function, commented information for analysers or through contracts. The code we were working had contracts and next section provides more details on contract based verification.
+
+\ifericsson
+The source code we used for the case study was LTE baseband controller software. The code was tested and deployed into products. The model checking process on 6 major modules took little over a month. Most of the time and effort was put to avoid false positives and state space explosion. The state space explosion is still a major issue in model checking. With millions of lines of code we quite often had to choose small bounding values.
+\else
+
+\fi
+
+\subsection{Contract verification}
+Most of the Ericsson code has contracts on function implementation. As we discussed in \autoref{impl:contracts}, we stubbed the precondition and postcondition with CBMC APIs. During Ericsson's code analysis we realised that contracts used in the code are run time guards, which is a way of pessimistically checking incoming parameters at run time. These conditions check the values of each parameter when a function is called and the return values are checked before returning. The contracts are not providing enough information to CBMC to verify the properties of each function. 
+
+In verification, contracts are expected to be defined on the behaviour of the function and also provide actual limits of the parameter. The preconditions for the function can include limits on parameters and limits on global states. The post conditions can include affected states and results being returned. The affected states can be either part of parameters or global variables.
+
+\subsection{Identifying properties of thread local and concurrent threads}
+
+Apart from verifying logic properties of software, like arithmetic errors or pointer analysis, model checking can be used verify specific properties of the system. For example race conditions within a thread or between threads, memory handling or mutex handling. 
+
+Thread local race conditions are seen in system where the processor core and processor peripheral access processor common memory asynchronously. For example a case study in \cite{Donaldson:2011:AAD:2034876.2034900} shows IBM cell processor with possible race condition between processor core and DMA controller. The Ericsson platform uses a strong memory consistency model. During analysis we concluded that the DSP cores do not have thread local race conditions. The bounded model checking can verify some of the thread local properties. For example:
+
+\begin{itemize}
+
+\item \textbf{Correctness of memory allocation and deallocation}
+
+The dynamic memory management APIs can be instrumented to detect multiple deallocation of same memory address in a single thread.
+
+\item \textbf{Correctness of handling mutex variables}
+
+The mutex handling APIs can be instrumented to detect multiple locking/unlocking on same mutex variable.
+
+\end{itemize}
+
+
+As we discussed in earlier chapters concurrent software have several control flow paths and produces large formulas during model checking. The platform we analysed is designed to operate on incoming signals. Typically multiple signals handlers run to completion on parallel cores. The majority of signal handler operations are independent of other signals handlers in the system. In some cases signal handlers share some resources. The signal handlers also take advantage of heterogeneous architecture and spawn threads to slave cores and accelerate the computation. The bounded model checking can be used to verify following properties of the platform.
+
+
+
+\begin{itemize}
+
+\item \textbf{Verifying race conditions among the cores}
+
+In some cases the signal handlers share resources, like shared data structures or shared IO devices. The bounded model checking can be used to identify possible race conditions.
+
+\item \textbf{Memory management}
+
+The signal handlers make use of slave cores and transfer some of the processing to slave cores. The slave cores are capable of accessing shared memory regions may access, allocate or deallocate memory. The bounded model checking can be used to verify correctness of the memory usage by multiple slave cores.
+
+\item \textbf{Correctness of using mutex variables}
+
+The shared memory access is done within protected area. We can instrument the APIs to detect possible unprotected access to shared memory regions.
+
+
+\begin{comment}
+\item \textbf{Validating parameter of signals}
+
+The signal handlers in the systems work in parallel and perform fixed set of tasks. It often necessary to perform multiple operations on a signal and multiple signal handlers are invoked sequentially. For example, the base station can receive a call setup signal in encoded format, one signal handler can perform decoding, next can fetch availability of bandwidth, forwarded it to protocol logic to respond with valid response and initiate call setup procedure. We observed that the signals are invoked dynamically and run to completion. We can validate incoming parameters of instrumenting signal handlers.
+\end{comment}
+
+%%%%%%%%%%%%%%%5
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%555
+% Limitations and possibilities
+% legacy code
+% new prospects
+
+
+\end{itemize}
+
+
+\chapter{Future Work}
+
+In current implementation we keep the memory labels as variable properties in goto-programs. In future we can use these labels in verifying memory related operations.
+
+As we discussed in previous sections, contracts defined in the code are not providing enough information to verifier. Ericsson's code can be carefully reviewed again and one can add contracts which provide enough information about functionality. Also, contracts can be defined effectively, through top down development approach. In top down development approach, product architecture is designed, architecture is divided into modules and each module will have specific functionality. This approach clearly identifies system states being used by each module. It is easier to identify possible preconditions, postcondition and invariants.
+
+In previous chapter we have discussed various properties we identified in the system and proposed possible implementation techniques. All the properties can be verified by extending CBMC or instrumenting the software.
+
+
+
+

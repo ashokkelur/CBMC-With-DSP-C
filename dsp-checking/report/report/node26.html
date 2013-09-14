@@ -1,0 +1,174 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Bit vector flattening</TITLE>
+<META NAME="description" CONTENT="Bit vector flattening">
+<META NAME="keywords" CONTENT="report">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="report.css">
+
+<LINK REL="next" HREF="node27.html">
+<LINK REL="previous" HREF="node25.html">
+<LINK REL="up" HREF="node22.html">
+<LINK REL="next" HREF="node27.html">
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<A NAME="tex2html524"
+  HREF="node27.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="/usr/share/latex2html/icons/next.png"></A> 
+<A NAME="tex2html518"
+  HREF="node22.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="/usr/share/latex2html/icons/up.png"></A> 
+<A NAME="tex2html512"
+  HREF="node25.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="/usr/share/latex2html/icons/prev.png"></A> 
+<A NAME="tex2html520"
+  HREF="node3.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="/usr/share/latex2html/icons/contents.png"></A> 
+<A NAME="tex2html522"
+  HREF="node53.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="/usr/share/latex2html/icons/index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html525"
+  HREF="node27.html">CBMC keywords</A>
+<B> Up:</B> <A NAME="tex2html519"
+  HREF="node22.html">CBMC</A>
+<B> Previous:</B> <A NAME="tex2html513"
+  HREF="node25.html">Variable renaming</A>
+ &nbsp; <B>  <A NAME="tex2html521"
+  HREF="node3.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html523"
+  HREF="node53.html">Index</A></B> 
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION00540400000000000000">
+Bit vector flattening</A>
+</H3>
+After compiling a source file, we get goto-program. The next step is to check assertions or any other properties and technique used to check these properties is called decision procedure. A decision procedure is a program which terminates with definite answer, true or false, for a decision problem. The decision procedure can decide on control flows based on previous assignments/operation. For example, decision procedure can identify if a control flow can trigger an assertion based on previous assignments and operations. 
+
+<P>
+Standard ways of implementing decision procedure is bit vector flattening followed by a call to a propositional SAT solver. In this process first step is encoding  statements from goto-program into bit vectors. Encoding variables and constants to bit vectors is a straight forward task, for example a variable X of size N, can be encoded into bit vectors b of length N. Bit vector operations have to be handled on individual bases. For example, let X, Y and Z be integer variable and a[n], b[n] and c[n] be the bit vectors for each variable respectively. For addition of two bits, we can use a one bit full adder circuit as in fig:bitadder. The circuit will provide us with following formula.
+
+<P>
+<!-- MATH
+ $S_i = (a_i + b_i + C_{in}) mod_2   \longleftrightarrow  (a_i \oplus b_i \oplus c_i)$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="307" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img47.png"
+ ALT="$S_i = (a_i + b_i + C_{in}) mod_2 \longleftrightarrow (a_i \oplus b_i \oplus c_i)$"></SPAN>
+
+<P>
+<!-- MATH
+ $C_{out} = (a_i + b_i + C_{in}) div_2   \longleftrightarrow  (a_i \cdot b_i + a_i \cdot C_{in} + b_i \cdot C_{in})$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="411" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img48.png"
+ ALT="$C_{out} = (a_i + b_i + C_{in}) div_2 \longleftrightarrow (a_i \cdot b_i + a_i \cdot C_{in} + b_i \cdot C_{in})$"></SPAN>
+
+<P>
+Bit flattening is a process of transforming bit vector logic into propositional logic [<A
+ HREF="node54.html#3540741046">28</A>]. For example above bit vector logic can be converted to a propositional logic for <SPAN CLASS="MATH"><IMG
+ WIDTH="20" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img49.png"
+ ALT="$S_i$"></SPAN>.
+
+<P>
+<!-- MATH
+ $(a_i \vee b_i \vee \neg C_{out}) \wedge (a \vee \neg b \vee C_{in} \vee \neg C_{out}) \wedge (a \vee \neg b \vee \neg C_{in} \vee C_{out}) \wedge$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="480" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img50.png"
+ ALT="$ (a_i \vee b_i \vee \neg C_{out}) \wedge (a \vee \neg b \vee C_{in} \vee \neg C_{out}) \wedge (a \vee \neg b \vee \neg C_{in} \vee C_{out}) \wedge $"></SPAN>
+
+<P>
+<!-- MATH
+ $(\neg a \vee b \vee C_{in} \vee \neg C_{out}) \wedge (\neg a \vee b \vee \neg C_{in} \vee  C_{out}) \wedge (\neg a \vee \neg b \vee C_{out})$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="469" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img51.png"
+ ALT="$(\neg a \vee b \vee C_{in} \vee \neg C_{out}) \wedge (\neg a \vee b \vee \neg C_{in} \vee C_{out}) \wedge (\neg a \vee \neg b \vee C_{out})$"></SPAN>
+
+<P>
+Similarly we can build carry chain adder for bit vectors, subtractor for subtract operation, bit wise operations etc. The multiplication, division and modulo operations generate large formulas. To handle large expressions and large operations incremental flattening is used [<A
+ HREF="node54.html#3540741046">28</A>].
+
+<P>
+As we know from sec:sat:solver, a proposition logic can be verified using SAT solvers. The SAT solver can work on propositional logic of program logic to verify expressions and check different properties of the program logic.
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="fig:bitadder"></A><A NAME="511"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 2.11:</STRONG>
+One Bit Full Adder (FA) <A NAME="453"></A></CAPTION>
+<TR><TD></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+
+<DIV CLASS="navigation"><HR>
+<!--Navigation Panel-->
+<A NAME="tex2html524"
+  HREF="node27.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="/usr/share/latex2html/icons/next.png"></A> 
+<A NAME="tex2html518"
+  HREF="node22.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="/usr/share/latex2html/icons/up.png"></A> 
+<A NAME="tex2html512"
+  HREF="node25.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="/usr/share/latex2html/icons/prev.png"></A> 
+<A NAME="tex2html520"
+  HREF="node3.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="/usr/share/latex2html/icons/contents.png"></A> 
+<A NAME="tex2html522"
+  HREF="node53.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="/usr/share/latex2html/icons/index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html525"
+  HREF="node27.html">CBMC keywords</A>
+<B> Up:</B> <A NAME="tex2html519"
+  HREF="node22.html">CBMC</A>
+<B> Previous:</B> <A NAME="tex2html513"
+  HREF="node25.html">Variable renaming</A>
+ &nbsp; <B>  <A NAME="tex2html521"
+  HREF="node3.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html523"
+  HREF="node53.html">Index</A></B> </DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+ash
+2012-09-13
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,203 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Loop Unrolling</TITLE>
+<META NAME="description" CONTENT="Loop Unrolling">
+<META NAME="keywords" CONTENT="report">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="report.css">
+
+<LINK REL="next" HREF="node24.html">
+<LINK REL="previous" HREF="node22.html">
+<LINK REL="up" HREF="node22.html">
+<LINK REL="next" HREF="node24.html">
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<A NAME="tex2html482"
+  HREF="node24.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="/usr/share/latex2html/icons/next.png"></A> 
+<A NAME="tex2html476"
+  HREF="node22.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="/usr/share/latex2html/icons/up.png"></A> 
+<A NAME="tex2html470"
+  HREF="node22.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="/usr/share/latex2html/icons/prev.png"></A> 
+<A NAME="tex2html478"
+  HREF="node3.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="/usr/share/latex2html/icons/contents.png"></A> 
+<A NAME="tex2html480"
+  HREF="node53.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="/usr/share/latex2html/icons/index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html483"
+  HREF="node24.html">Goto-programs</A>
+<B> Up:</B> <A NAME="tex2html477"
+  HREF="node22.html">CBMC</A>
+<B> Previous:</B> <A NAME="tex2html471"
+  HREF="node22.html">CBMC</A>
+ &nbsp; <B>  <A NAME="tex2html479"
+  HREF="node3.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html481"
+  HREF="node53.html">Index</A></B> 
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION00540100000000000000">
+Loop Unrolling</A>
+</H3>
+Loop unrolling, also called as loop unwinding, is process of converting loops into sequential statements. For example:
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="fig:example:loop:with:static:condition"></A><A NAME="356"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 2.5:</STRONG>
+An example of loop with static condition</CAPTION>
+<TR><TD><IMG
+ WIDTH="263" HEIGHT="20" BORDER="0"
+ SRC="img39.png"
+ ALT="\begin{figure}\centering
+\tikzstyle{module}=[draw, text centered, minimum heigh...
+...y_a[i] = array_b[i] + 100;
+}
+\end{lstlisting}};
+\end{tikzpicture}
+\end{figure}"></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+The example fig:example:loop:with:static:condition can be simply converted as shown in fig:example:unrolled:loop:with:static:condition, which contains sequential statements.
+
+<DIV ALIGN="CENTER"><A NAME="fig:example:unrolled:loop:with:static:condition"></A><A NAME="367"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 2.6:</STRONG>
+An example of unrolled loop with static condition</CAPTION>
+<TR><TD><IMG
+ WIDTH="779" HEIGHT="20" BORDER="0"
+ SRC="img40.png"
+ ALT="\begin{figure}\centering
+\tikzstyle{module}=[draw, text centered, minimum heigh...
+...ray_a[4] = array_b[4] + 100;
+\end{lstlisting}};
+\end{tikzpicture}
+\end{figure}"></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+Typically there are also loops which are bounded by run-time conditions, for example in fig:example:loop:with:dynamic:condition.
+
+<DIV ALIGN="CENTER"><A NAME="fig:example:loop:with:dynamic:condition"></A><A NAME="378"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 2.7:</STRONG>
+An example of loop with dynamic condition</CAPTION>
+<TR><TD><IMG
+ WIDTH="306" HEIGHT="20" BORDER="0"
+ SRC="img41.png"
+ ALT="\begin{figure}\centering
+\tikzstyle{module}=[draw, text centered, minimum heigh...
+...y_a[i] = array_b[i];
+i++;
+}
+\end{lstlisting}};
+\end{tikzpicture}
+\end{figure}"></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+The C code in fig:example:loop:with:dynamic:condition contains a while loop which terminates when array_b encounters an end of string character (<SPAN CLASS="MATH"><IMG
+ WIDTH="20" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img42.png"
+ ALT="$\backslash 0$"></SPAN>) in its index. The static analysis may not provide any information about the contents of arry_b and it is impossible to know the number of iteration loop will run during execution. Most of the tools use bounded loop unrolling, i.e. if the exit condition for a loop cannot be determined statically, loops are unrolled a maximum of N number of times. Number N can be adjusted according to application. For instance above loop in fig:example:loop:with:dynamic:condition, with N set to 5, can be transformed as shown in fig:example:unrolled:loop:with:dynamic:condition.
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="fig:example:unrolled:loop:with:dynamic:condition"></A><A NAME="391"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 2.8:</STRONG>
+An example of unrolled loop with dynamic condition</CAPTION>
+<TR><TD><IMG
+ WIDTH="2974" HEIGHT="20" BORDER="0"
+ SRC="img43.png"
+ ALT="\begin{figure}\centering
+\tikzstyle{module}=[draw, text centered, minimum heigh...
+... assert(0);
+}
+}
+}
+}
+}
+}
+\end{lstlisting}};
+\end{tikzpicture}
+\end{figure}"></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+Assert statement, at last, can be used to check if unrolling was not enough.
+
+<P>
+
+<DIV CLASS="navigation"><HR>
+<!--Navigation Panel-->
+<A NAME="tex2html482"
+  HREF="node24.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="/usr/share/latex2html/icons/next.png"></A> 
+<A NAME="tex2html476"
+  HREF="node22.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="/usr/share/latex2html/icons/up.png"></A> 
+<A NAME="tex2html470"
+  HREF="node22.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="/usr/share/latex2html/icons/prev.png"></A> 
+<A NAME="tex2html478"
+  HREF="node3.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="/usr/share/latex2html/icons/contents.png"></A> 
+<A NAME="tex2html480"
+  HREF="node53.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="/usr/share/latex2html/icons/index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html483"
+  HREF="node24.html">Goto-programs</A>
+<B> Up:</B> <A NAME="tex2html477"
+  HREF="node22.html">CBMC</A>
+<B> Previous:</B> <A NAME="tex2html471"
+  HREF="node22.html">CBMC</A>
+ &nbsp; <B>  <A NAME="tex2html479"
+  HREF="node3.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html481"
+  HREF="node53.html">Index</A></B> </DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+ash
+2012-09-13
+</ADDRESS>
+</BODY>
+</HTML>

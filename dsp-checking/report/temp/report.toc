@@ -1,0 +1,50 @@
+\contentsline {section}{Acknowledgements}{i}{section*.1}
+\contentsline {section}{Formal notations}{viii}{section*.5}
+\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
+\contentsline {subsection}{Contributions}{3}{section*.6}
+\contentsline {subsection}{Structure of the thesis report}{4}{section*.7}
+\contentsline {chapter}{\numberline {2}Background}{7}{chapter.2}
+\contentsline {section}{\numberline {2.1}DSP-C}{7}{section.2.1}
+\contentsline {subsection}{Fixed point}{7}{section*.8}
+\contentsline {subsection}{Fixed point data type}{8}{section*.9}
+\contentsline {subsubsection}{̣\_\_fixed types}{8}{section*.10}
+\contentsline {subsubsection}{̣\_\_accum types}{8}{section*.11}
+\contentsline {subsubsection}{Operations on new data types}{8}{section*.12}
+\contentsline {subsection}{Divided memory spaces}{9}{section*.13}
+\contentsline {subsection}{Dedicated register sets}{9}{section*.14}
+\contentsline {subsection}{Circular buffers}{10}{section*.15}
+\contentsline {section}{\numberline {2.2}Contract programming}{10}{section.2.2}
+\contentsline {section}{\numberline {2.3}Satisfiability (SAT)}{11}{section.2.3}
+\contentsline {section}{\numberline {2.4}CBMC}{12}{section.2.4}
+\contentsline {subsubsection}{Loop Unrolling}{12}{section*.16}
+\contentsline {subsubsection}{Goto-programs}{14}{section*.17}
+\contentsline {subsubsection}{Variable renaming}{15}{section*.18}
+\contentsline {subsubsection}{Bit vector flattening}{15}{section*.19}
+\contentsline {subsubsection}{CBMC keywords}{16}{section*.20}
+\contentsline {subsubsection}{Use cases of CBMC}{17}{section*.21}
+\contentsline {section}{\numberline {2.5}Verifying properties of thread local and concurrent threads}{17}{section.2.5}
+\contentsline {chapter}{\numberline {3}Related work}{19}{chapter.3}
+\contentsline {subsection}{Binary Decision Diagrams (BDDs)}{20}{section*.22}
+\contentsline {chapter}{\numberline {4}Multicore Hardware Model}{21}{chapter.4}
+\contentsline {section}{\numberline {4.1}Computing platforms}{21}{section.4.1}
+\contentsline {section}{\numberline {4.2}Multicore Memory models}{22}{section.4.2}
+\contentsline {subsection}{UMA}{22}{section*.23}
+\contentsline {subsection}{NUMA}{22}{section*.24}
+\contentsline {subsection}{COMA}{22}{section*.25}
+\contentsline {subsection}{SRAM}{22}{section*.26}
+\contentsline {section}{\numberline {4.3}Data sharing}{22}{section.4.3}
+\contentsline {chapter}{\numberline {5}Implementation}{25}{chapter.5}
+\contentsline {section}{\numberline {5.1}DSP-C support}{25}{section.5.1}
+\contentsline {section}{\numberline {5.2}Contract verification}{26}{section.5.2}
+\contentsline {section}{\numberline {5.3}Platform specific libraries and macro support}{28}{section.5.3}
+\contentsline {subsection}{Memory overlays}{28}{section*.27}
+\contentsline {subsection}{Support for parallel programs}{29}{section*.28}
+\contentsline {subsection}{Internal macros}{30}{section*.29}
+\contentsline {chapter}{\numberline {6}Discussion and Conclusion}{31}{chapter.6}
+\contentsline {subsection}{Model checking}{31}{section*.30}
+\contentsline {subsection}{Contract verification}{32}{section*.31}
+\contentsline {subsection}{Identifying properties of thread local and concurrent threads}{32}{section*.32}
+\contentsline {chapter}{\numberline {7}Future Work}{35}{chapter.7}
+\contentsline {chapter}{Bibliography}{36}{section*.33}
+\contentsline {chapter}{\numberline {A}Examples of new data type and verification results}{41}{appendix.A}
+\contentsline {chapter}{\numberline {B}Contract verification example}{45}{appendix.B}

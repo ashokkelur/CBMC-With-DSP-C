@@ -1,0 +1,177 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Memory overlays</TITLE>
+<META NAME="description" CONTENT="Memory overlays">
+<META NAME="keywords" CONTENT="report">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="report.css">
+
+<LINK REL="next" HREF="node46.html">
+<LINK REL="previous" HREF="node44.html">
+<LINK REL="up" HREF="node44.html">
+<LINK REL="next" HREF="node46.html">
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<A NAME="tex2html800"
+  HREF="node46.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="/usr/share/latex2html/icons/next.png"></A> 
+<A NAME="tex2html794"
+  HREF="node44.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="/usr/share/latex2html/icons/up.png"></A> 
+<A NAME="tex2html788"
+  HREF="node44.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="/usr/share/latex2html/icons/prev.png"></A> 
+<A NAME="tex2html796"
+  HREF="node3.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="/usr/share/latex2html/icons/contents.png"></A> 
+<A NAME="tex2html798"
+  HREF="node53.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="/usr/share/latex2html/icons/index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html801"
+  HREF="node46.html">Support for parallel programs</A>
+<B> Up:</B> <A NAME="tex2html795"
+  HREF="node44.html">Platform specific libraries and</A>
+<B> Previous:</B> <A NAME="tex2html789"
+  HREF="node44.html">Platform specific libraries and</A>
+ &nbsp; <B>  <A NAME="tex2html797"
+  HREF="node3.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html799"
+  HREF="node53.html">Index</A></B> 
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00831000000000000000">
+Memory overlays</A>
+</H2>
+In some applications some part of data is never reused or written back to permanent storage. Also, when we look at embedded systems, in most cases executing instructions are always kept in read only memory and whenever necessary data is brought to instruction memory, cache or scratchpad. Memory overlay is a process in which part of memory is overwritten without worrying about previous contents of it.
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="fig:example:multiple:funcalls"></A><A NAME="1048"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 5.3:</STRONG>
+An example of multiple function calls</CAPTION>
+<TR><TD><IMG
+ WIDTH="802" HEIGHT="20" BORDER="0"
+ SRC="img78.png"
+ ALT="\begin{figure}\centering
+\tikzstyle{module}=[draw, text centered, minimum heigh...
+...print_number(number);
+...
+}
+\end{lstlisting}};
+\end{tikzpicture}
+\end{figure}"></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+In example shown in fig:example:multiple:funcalls, main generates a random number and prints it before going further with other processing. In case, programmer knows she or he is not going to use <!-- MATH
+ $random\_generator$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="135" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img79.png"
+ ALT="$random\_generator$"></SPAN> again, the same address can be taken by <SPAN CLASS="MATH"><IMG
+ WIDTH="101" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img80.png"
+ ALT="$print\_number$"></SPAN>. Possibly one can also rewrite the program as shown in figure fig:example:memory:overlay.
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="fig:example:memory:overlay"></A><A NAME="1062"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 5.4:</STRONG>
+An example of memory overlay</CAPTION>
+<TR><TD><IMG
+ WIDTH="1189" HEIGHT="20" BORDER="0"
+ SRC="img81.png"
+ ALT="\begin{figure}\centering
+\tikzstyle{module}=[draw, text centered, minimum heigh...
+...int_number,
+number);
+...
+}
+\end{lstlisting}};
+\end{tikzpicture}
+\end{figure}"></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+As we can see function <!-- MATH
+ $overlay\_and\_call$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="121" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img82.png"
+ ALT="$overlay\_and\_call$"></SPAN> takes a pointer to memory region, function pointer and variable number of argument to be supplied to the called function. When the function executed, instructions of the function, whose pointer is supplied as parameter, are brought to specific region of the memory mentioned in the argument. This avoids any memory write backs and provides faster processing. Also this reduces the amount of memory required for the applications [<A
+ HREF="node54.html#verma2004dynamic">42</A>].
+
+<P>
+In the tool we added support to handle memory overlays. For data overlay we treat each new memory overlay as new memory block allocation and old block as removal. The new instruction overlay and call to those instructions is treated as simple function call. This allows CBMC to handle memory overlays in simplest manner. In future work one can add support to verify the dangling pointers due to overlays.
+
+<P>
+
+<DIV CLASS="navigation"><HR>
+<!--Navigation Panel-->
+<A NAME="tex2html800"
+  HREF="node46.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="/usr/share/latex2html/icons/next.png"></A> 
+<A NAME="tex2html794"
+  HREF="node44.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="/usr/share/latex2html/icons/up.png"></A> 
+<A NAME="tex2html788"
+  HREF="node44.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="/usr/share/latex2html/icons/prev.png"></A> 
+<A NAME="tex2html796"
+  HREF="node3.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="/usr/share/latex2html/icons/contents.png"></A> 
+<A NAME="tex2html798"
+  HREF="node53.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index"
+ SRC="/usr/share/latex2html/icons/index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html801"
+  HREF="node46.html">Support for parallel programs</A>
+<B> Up:</B> <A NAME="tex2html795"
+  HREF="node44.html">Platform specific libraries and</A>
+<B> Previous:</B> <A NAME="tex2html789"
+  HREF="node44.html">Platform specific libraries and</A>
+ &nbsp; <B>  <A NAME="tex2html797"
+  HREF="node3.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html799"
+  HREF="node53.html">Index</A></B> </DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+ash
+2012-09-13
+</ADDRESS>
+</BODY>
+</HTML>
